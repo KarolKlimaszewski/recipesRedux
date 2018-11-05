@@ -1,17 +1,19 @@
 import React from "react";
 import List from "./list.jsx";
+import Header from "./header.jsx";
 import Form from "./form.jsx";
+import RecipeForm from "./recipeForm.jsx";
+import RecipesList from "./recipes.jsx";
 
-const App = () => (
-  <div className="row mt-5">
+export default class App extends React.Component{
+  render () {
+  return <div className="container">
+    <Header />
     <div className="col-md-4 offset-md-1">
-      <h2>Articles</h2>
-      <List />
+      <h2>Recipes</h2>
+      <RecipesList />
     </div>
-    <div className="col-md-4 offset-md-1">
-      <h2>Add a new article</h2>
-      <Form />
-    </div>
+    <RecipeForm />
   </div>
-);
-export default App;
+  }
+};

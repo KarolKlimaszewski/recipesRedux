@@ -1,2 +1,6 @@
 export const ADD_ARTICLE = "ADD_ARTICLE";
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
+
+export const SUBMIT_RECIPE = "SUBMIT_RECIPE";
+
+export const TOGGLE_FORM = "TOGGLE_FORM";

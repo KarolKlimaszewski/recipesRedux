@@ -1,0 +1,107 @@
+.filter{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  background: rgba($second-color, 0.5);
+}
+
+.filter__title{
+  color: $main-color;
+}
+
+.filter__show{
+  width: 10em;
+  padding: 0.5em 2em;
+  background: $additional-color;
+  border: none;
+  color: white;
+}
+
+.filter__checkboxes{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em 0;
+}
+
+.filter__checkbox-container{
+  margin: 0.3em 0;
+}
+
+.filter__run, .filter__clear{
+  width: 15em;
+  padding: 0.5em 2em;
+  margin: 0.5em 0;
+  background: $additional-color;
+  border: none;
+  color: white;
+  align-self: center;
+}
+
+.filter__checkbox {
+  position: absolute;
+  opacity: 0;
+
+
+  & + .filter__label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    text-transform: capitalize;
+  }
+
+  // Box.
+  & + .filter__label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+  }
+
+  // Box hover
+  &:hover + .filter__label:before {
+    background: $main-color;
+  }
+
+  // Box focus
+  &:focus + .filter__label:before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+  }
+
+  // Box checked
+  &:checked + .filter__label:before {
+    background: $main-color;
+  }
+
+  // Disabled state label.
+  &:disabled + .filter__label {
+    color: $second-color;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled + .filter__label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked + .filter__label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white,
+    4px 0 0 white,
+    4px -2px 0 white,
+    4px -4px 0 white,
+    4px -6px 0 white,
+    4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}

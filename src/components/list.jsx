@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { deleteArticle } from "../js/actions/index";
 
 const mapStateToProps = state => {

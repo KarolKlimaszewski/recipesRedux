@@ -1,3 +1,23 @@
+//COLORS
+$main-color: #361712;
+$second-color: #C8915B;
+$additional-color: #4BC379;
+
+//SCREEN SIZES
+$small: "screen and (min-width: 576px)";
+$mid: "screen and (min-width: 768px)";
+$large: "screen and (min-width: 992px)";
+
+//FONT:
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+//PARTIALS:
+@import 'header.scss';
+@import 'loader.scss';
+@import 'recipeForm.scss';
+@import 'recipe.scss';
+@import 'filter';
+
 @import 'bootstrap/bootstrap.scss';
 
 *{
@@ -6,15 +26,16 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: #ddd;
+body{
+  // background: url("../../images/background.jpg");
+  background-color: $additional-color;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
-.list-group-item{
-  display: flex;
-  justify-content: space-between;
-  &__delete{
-    padding: 10px;
-    background: blue;
-  }
+.container{
+  max-width: 1350px;
+  margin: 0 auto;
 }
