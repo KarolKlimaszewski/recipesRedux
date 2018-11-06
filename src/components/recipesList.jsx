@@ -44,18 +44,15 @@ class RecipesList extends Component {
     }
 
     render() {
-        let filtredArr = [];
+        let catFilter = this.props.categoryFilter.map(cat => cat);
         let filtred = _.filter(this.props.recipes, (el) => {
-            if(this.props.categoryFilter !== []) {
-                this.props.categoryFilter.map(elem => {
-                    if(el.category.includes(elem)) {
-                        filtredArr.push(el)
-                    }
-            
-                });
+            if (this.props.categoryFilter.length >= 1) {
+                return el.category.includes(catFilter.toString())
+            }else{
+                return el
             }
         });
-        let recipes = filtredArr.map((el, i) => {
+        let recipes = filtred.map((el, i) => {
             let categories = el.category.map(cat => {
                 if (cat === "snack") {
                     return <div className="recipe__category" style={{ backgroundColor: "red" }}>{cat}</div>
@@ -79,8 +76,8 @@ class RecipesList extends Component {
                 if (el.id === this.props.active) {
                     return <div className={"recipe"} key={el.id}>
                         <div className="recipe__row--main">
-                            <div className="recipe__show" onClick={e => this.handleShowRecipe(e, el)}>hide</div>
-                            <div className="recipe__categories">{categories}</div>
+                            <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>hide</a>
+                            {/* <div className="recipe__categories">{categories}</div> */}
                             <h2 className="recipe__title">{el.title}</h2>
                         </div>
                         <div className="recipe__row">
@@ -101,30 +98,30 @@ class RecipesList extends Component {
                             </ul>
                         </div>
                         <div className="recipe__row recipe__row-edit">
-                            <button className="recipe__delete" onClick={e => this.handleDeleteRecipe(e, el)}>Delete
-                        </button>
+                            <a className="recipe__delete waves-effect waves-light btn-large" onClick={e => this.handleDeleteRecipe(e, el)}>Delete
+                        </a>
                         </div>
                     </div>
                 } else {
-                    return <div className={"recipe"} key={"recipe" + i}>
+                    return <div className={"recipe col s4"} key={"recipe" + i}>
                         <div className="recipe__row--main">
-                            <div className="recipe__show" onClick={e => this.handleShowRecipe(e, el)}>show</div>
+                            <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
                             <div className="recipe__categories">{categories}</div>
-                            <h2 className="recipe__title">{el.title}</h2>
                         </div>
+                            <h2 className="recipe__title">{el.title}</h2>
                     </div>
                 }
             } else {
-                return <div className={"recipe"} key={"recipe" + i}>
+                return <div className={"recipe col s4"} key={"recipe" + i}>
                     <div className="recipe__row--main">
-                        <div className="recipe__show" onClick={e => this.handleShowRecipe(e, el)}>show</div>
+                        <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
                         <div className="recipe__categories">{categories}</div>
                         <h2 className="recipe__title">{el.title}</h2>
                     </div>
                 </div>
             }
         });
-        return <div>{recipes}</div>
+        return <div className="container"><div className="row">{recipes}</div></div>
     }
 }
 

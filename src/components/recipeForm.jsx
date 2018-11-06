@@ -41,11 +41,7 @@ class RecipeForm extends Component {
 
     handleFormDisplay(event) {
         event.preventDefault();
-        if(this.props.displayForm) {
-        this.props.showForm(false);
-        }else{
-            this.props.showForm(true);
-        }
+        this.props.showForm(!this.props.displayForm)
     }
 
     handleTitleChange(event) {
@@ -124,69 +120,63 @@ class RecipeForm extends Component {
             this.props.showForm(false);
         }
     }
-    
     render() {
-        let ingredients = this.state.ingredientsArr.map((el) => {
-            return <div className="ingredients-item">{el}</div>
+        let ingredients = this.state.ingredientsArr.map((el, i) => {
+            return <div key={i} className="ingredients-item">{el}</div>
         })
-        let recipeSteps = this.state.recipeStepsArr.map((el) => {
-            return <div className="ingredients-item">{el}</div>
+        let recipeSteps = this.state.recipeStepsArr.map((el, i) => {
+            return <div key={i} className="ingredients-item">{el}</div>
         })
         let checkbox = checkboxes.map((el, i) => {
-            return <div key={"checkbox" + i} className={"form__checkbox-container"}>
-                <input className="form__checkbox" id={el.name} type="checkbox" value={el.value}
-                    onChange={this.handleCheckboxChange} />
-                <label className={"form__label"} htmlFor={el.name}>{el.name}</label>
-            </div>
+            return <p key={i}>
+                <label>
+                    <input type="checkbox" className="filled-in" onChange={this.handleCheckboxChange} />
+                    <span>{el.name}</span>
+                </label>
+            </p>
         })
         if(this.props.displayForm) {
-        return <div>
-            <button className="recipe__add" onClick={this.handleFormDisplay}>+</button>
-            <form className="form" style={{ display: this.props.showForm }}>
-                <p className="form__description">
-                    Your recipe title:
-                </p>
-                <input className={"form__input"} type="text" placeholder={"Title..."}
-                    value={this.state.title}
-                    onChange={this.handleTitleChange} />
-                <p className="form__description">
+        return <div className="row">
+            <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+</a>
+            <form className="form col s12">
+                <div className="input-field col s6">
+                    <input id="title" value={this.state.title}
+                        onChange={this.handleTitleChange} />
+                    <label htmlFor="title" className="active">Your recipe title:</label>
+                </div>
+                <div className="input-field col s6">
+                    <input id="photo" value={this.state.photo}
+                        onChange={this.handlePhotoUrlChange} />
+                    <label htmlFor="photo" className="active">Photo Url:</label>
+                </div>
+                <div className="input-field col s6">
+                    <input id="ingredients" value={this.state.ingredients}
+                        onChange={this.handleIngredientsChange} />
+                    <label htmlFor="ingredients" className="active">Ingredients:</label>
+                    <div className="ingredients">{ingredients}</div>
+                    <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddIngredient}>Add ingredient</button>
+                </div>
+                <div className="input-field col s6">
+                    <input id="recipeSteps" value={this.state.recipeSteps}
+                        onChange={this.handleRecipeStepsChange} />
+                    <label htmlFor="recipeSteps" className="active">Recipe steps:</label>
+                    <div className="ingredients">{recipeSteps}</div>
+                    <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddRecipeStep}>Add recipe step</button>
+                </div>
+                <p className="form__description col s12">
                     Category:
                     </p>
-                <div className="form__checkboxes">
+                <div className="form__checkboxes col s12">
                     {checkbox}
                 </div>
-                <p className="form__description">
-                    Ingredients:
-                </p>
-
-
-                    <div className="ingredients">{ingredients}</div>
-                <input className={"form__input"} type="text" placeholder={"Ingredients..."}
-                    value={this.state.ingredients}
-                    onChange={this.handleIngredientsChange} />
-                    <button className="ingredients__add" onClick={this.handleAddIngredient}>Add ingredient</button>
-                <p className="form__description">
-                    Photo Url:
-                    </p>
-                <input className={"form__input"} type="text" placeholder={"Your photo URL..."}
-                    value={this.state.photo}
-                    onChange={this.handlePhotoUrlChange} />
-                <p className="form__description">
-                    Recipe steps:
-                </p>
-                <div className="ingredients">{recipeSteps}</div>
-                <input className={"form__input"} type="text" placeholder={"Recipe steps..."}
-                    value={this.state.recipeSteps}
-                    onChange={this.handleRecipeStepsChange} />
-                <button className="ingredients__add" onClick={this.handleAddRecipeStep}>Add another step</button>
-                <button type={"submit"} className={"form__submit"} onClick={this.handleSubmit}>
-                    Submit
+                <button type={"submit"} className={"form__submit btn waves-effect waves-light col s12"} onClick={this.handleSubmit}>
+                <i className="material-icons">Submit</i>
                     </button>
-            </form>
+                </form>
         </div>
     }else{
         return <div>
-            <button className="recipe__add" onClick={this.handleFormDisplay}>+</button>
+            <button className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+</button>
         </div>
     }
 }

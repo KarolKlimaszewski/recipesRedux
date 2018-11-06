@@ -48,12 +48,7 @@ export class Filter extends Component {
     }
 
     handleShowSorting() {
-        event.preventDefault();
-        if (this.props.displayFilters) {
-            this.props.toggleFilters(false);
-        } else {
-            this.props.toggleFilters(true);
-        }
+        this.props.toggleFilters(!this.props.displayFilters)
     }
 
     handleLaunchFilters() {
@@ -75,27 +70,36 @@ export class Filter extends Component {
 
     render() {
         let checkbox = checkboxes.map((el, i) => {
-            return <div key={"filterCheckbox" + i} className={"filter__checkbox-container"}>
-                <input className="filter__checkbox" id={el.sortValue} type="checkbox" value={el.value}
-                    onChange={this.handleCategoryChange} />
-                <label className={"filter__label"} htmlFor={el.sortValue}>{el.name}</label>
-            </div>
+            return <p key={i}>
+                <label>
+                    <input type="checkbox" value={el.value} className="filled-in" onChange={this.handleCategoryChange} />
+                    <span>{el.name}</span>
+                </label>
+            </p>
+            // <div key={"filterCheckbox" + i} className={"filter__checkbox-container"}>
+            //     <input className="filter__checkbox" id={el.sortValue} type="checkbox" value={el.value}
+            //         onChange={this.handleCategoryChange} />
+            //     <label className={"filter__label"} htmlFor={el.sortValue}>{el.name}</label>
+            // </div>
         });
         if(this.props.displayFilters) {
             return <div className={"filter"}>
-                <button className="filter__show" onClick={this.handleShowSorting}>Hide filters</button>
+                <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>
                 <h2 className="filter__title">
                     Category:
                     </h2>
                 <div className="filter__checkboxes">
                     {checkbox}
                 </div>
-                <button className="filter__run" onClick={this.handleLaunchFilters}>Launch filters</button>
-                <button className="filter__clear" onClick={this.handleClearFilters}>Clear filters</button>
+                <h2 className="filter__title">
+                    Title:
+                    </h2>
+                <button className="filter__run btn waves-effect waves-light" onClick={this.handleLaunchFilters}>Launch filters</button>
+                <button className="filter__clear btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
             </div>
         } else {
             return <div className={"filter"}>
-                <button className="filter__show" onClick={this.handleShowSorting}>Show filters</button>
+                <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Show filters</button>
             </div>
         }
     }

@@ -1,9 +1,6 @@
 .recipe{
   background: rgba(black,0.6);
-  margin: 1em 0;
-  &:first-child{
-    margin: 0.5em 0;
-  }
+  margin: 10px;
 }
 
 .recipe__row{
@@ -102,30 +99,17 @@
   }
 }
 
-.recipe__edit{
-  background: yellow;
+.recipe-btn{
   border: none;
-  padding: 1em 2em;
-  font-weight: 700;
-  margin: 1em 0;
-}
-
-.recipe__delete{
-  background: red;
-  border: none;
-  padding: 1em 2em;
   color: white;
   font-weight: 700;
-  margin: 1em 0 1em 2em;
-}
-
-.recipe__show{
-  background: white;
-  padding: 10px 20px;
-  width: 5em;
-  text-align: center;
-  vertical-align: center;
-  &:hover{
-    cursor: pointer;
+  &__edit{
+    background: yellow;
+  }
+  &__delete{
+    background: red;
+  }
+  &__toggle{
+      background: white;
   }
 }

@@ -9,22 +9,6 @@ const initialState = {
       category: ["snack", "dinner"],
       id: 1,
   },
-  // {
-  //   title: "test title",
-  //   ingredientsArr: ["składnik", "składnik 2"],
-  //   photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  //   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-  //   category: ["kategoria"],
-  //   id: 2
-  // },
-  // {
-  //   title: "test title",
-  //   ingredientsArr: ["składnik", "składnik 2"],
-  //   photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  //   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-  //   category: ["kategoria"],
-  //   id: 3
-  // },
 {
   title: "test title2",
   ingredientsArr: ["składnik", "składnik 2"],
@@ -32,6 +16,22 @@ const initialState = {
   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
   category: ["dessert", "snack"],
   id: 4
+},
+{
+  title: "test title2",
+  ingredientsArr: ["składnik", "składnik 2"],
+  photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+  category: ["dessert", "snack"],
+  id: 3
+},
+{
+  title: "test title2",
+  ingredientsArr: ["składnik", "składnik 2"],
+  photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+  category: ["dessert", "snack"],
+  id: 2
 }],
   displayForm: true,
   displayRecipe: true,
