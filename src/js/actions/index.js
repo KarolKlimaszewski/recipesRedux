@@ -24,3 +24,18 @@ export const activeRecipe = active => ({
     type: "ACTIVE_RECIPE",
     payload: active
 })
+
+// FORM ACTIONS
+
+export const toggleFilters = displayFilters => ({
+    type: "TOGGLE_FILTERS",
+    payload: displayFilters
+});
+export const launchCategoryFilter = recipe => ({
+    type: "CATEGORY_FILTER",
+    payload: recipe
+});
+export const clearFilters = filters => ({
+    type: "CLEAR_FILTERS",
+    payload: filters
+})

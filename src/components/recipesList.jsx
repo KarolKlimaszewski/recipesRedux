@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import _ from "underscore";
 import { deleteRecipe, showRecipe, activeRecipe } from "../js/actions/index";
 
 const mapStateToProps = state => {
     return {
         recipes: state.recipes,
         displayRecipe: state.displayRecipe,
-        active: state.active
+        active: state.active,
+        categoryFilter: state.categoryFilter
     };
 };
 
@@ -43,7 +44,18 @@ class RecipesList extends Component {
     }
 
     render() {
-        let recipes = this.props.recipes.map((el, i) => {
+        let filtredArr = [];
+        let filtred = _.filter(this.props.recipes, (el) => {
+            if(this.props.categoryFilter !== []) {
+                this.props.categoryFilter.map(elem => {
+                    if(el.category.includes(elem)) {
+                        filtredArr.push(el)
+                    }
+            
+                });
+            }
+        });
+        let recipes = filtredArr.map((el, i) => {
             let categories = el.category.map(cat => {
                 if (cat === "snack") {
                     return <div className="recipe__category" style={{ backgroundColor: "red" }}>{cat}</div>

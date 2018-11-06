@@ -4,3 +4,7 @@ export const TOGGLE_FORM = "TOGGLE_FORM";
 export const DELETE_RECIPE = "DELETE_RECIPE";
 export const TOGGLE_RECIPE = "TOGGLE_RECIPE";
 export const ACTIVE_RECIPE = "ACTIVE_RECIPE";
+
+export const TOGGLE_FILTERS = "TOGGLE_FILTERS";
+export const CATEGORY_FILTER = "CATEGORY_FILTER";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";

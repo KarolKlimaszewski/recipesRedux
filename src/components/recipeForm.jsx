@@ -58,7 +58,6 @@ class RecipeForm extends Component {
         if (this.state.category.includes(event.target.value)) {
             let categoryArray = [...this.state.category];
             let index = categoryArray.indexOf(event.target.value);
-            console.log('powtórzenie');
             categoryArray.splice(index, 1);
             this.setState({
                 category: categoryArray

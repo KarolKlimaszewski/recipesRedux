@@ -1,4 +1,4 @@
-import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE } from "../constants/action-types";
+import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE, TOGGLE_FILTERS, CATEGORY_FILTER, CLEAR_FILTERS } from "../constants/action-types";
 const initialState = {
   articles: [],
   recipes: [{
@@ -6,8 +6,8 @@ const initialState = {
       ingredientsArr: ["składnik", "składnik 2"],
       photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
       recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-      category: ["kategoria", "test"],
-      id: 1
+      category: ["snack", "dinner"],
+      id: 1,
   },
   // {
   //   title: "test title",
@@ -26,16 +26,18 @@ const initialState = {
   //   id: 3
   // },
 {
-  title: "test title",
+  title: "test title2",
   ingredientsArr: ["składnik", "składnik 2"],
   photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-  category: ["kategoria", "snack"],
+  category: ["dessert", "snack"],
   id: 4
 }],
   displayForm: true,
   displayRecipe: true,
-  active: -1
+  active: -1,
+  displayFilters: true,
+  categoryFilter: []
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -61,6 +63,19 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         active: action.payload
       });
+      // Filters
+    case TOGGLE_FILTERS:
+      return Object.assign({}, state, {
+        displayFilters: action.payload
+      });
+    case CATEGORY_FILTER:
+      return Object.assign({}, state, {
+        categoryFilter: action.payload
+      });
+    case CLEAR_FILTERS:
+      return Object.assign({}, state, {
+        categoryFilter: action.payload
+      })
     default:
       return state;
   }
