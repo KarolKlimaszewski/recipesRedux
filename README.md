@@ -3,4 +3,4 @@
 Work in progress...
 
 ## Demo:
-https://karolklimaszewski.github.io/recipesRedux/
+https://karolklimaszewski.github.io/recipesRedux/dist
