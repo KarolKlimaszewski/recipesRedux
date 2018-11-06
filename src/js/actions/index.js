@@ -1,17 +1,7 @@
-export const addArticle = article => ({
-    type: "ADD_ARTICLE",
-    payload: article
-});
-
-export const deleteArticle = article => ({
-    type: "DELETE_ARTICLE",
-    payload: article
-});
-
 // RECIPES FORM ACTIONS
 
 export const submitRecipe = recipe => ({
-    type: "SUBMIT_RECIPE",
+    type: "SUBMIT_FORM",
     payload: recipe
 });
 
@@ -19,3 +9,18 @@ export const showForm = displayForm => ({
     type: "TOGGLE_FORM",
     payload: displayForm
 });
+
+// RECIPES ACTIONS
+
+export const deleteRecipe = recipe => ({
+    type: "DELETE_RECIPE",
+    payload: recipe
+});
+export const showRecipe = displayRecipe => ({
+    type: "TOGGLE_RECIPE",
+    payload: displayRecipe
+});
+export const activeRecipe = active => ({
+    type: "ACTIVE_RECIPE",
+    payload: active
+})

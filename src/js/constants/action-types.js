@@ -1,6 +1,6 @@
-export const ADD_ARTICLE = "ADD_ARTICLE";
-export const DELETE_ARTICLE = "DELETE_ARTICLE";
-
-export const SUBMIT_RECIPE = "SUBMIT_RECIPE";
-
+export const SUBMIT_FORM = "SUBMIT_FORM";
 export const TOGGLE_FORM = "TOGGLE_FORM";
+
+export const DELETE_RECIPE = "DELETE_RECIPE";
+export const TOGGLE_RECIPE = "TOGGLE_RECIPE";
+export const ACTIVE_RECIPE = "ACTIVE_RECIPE";

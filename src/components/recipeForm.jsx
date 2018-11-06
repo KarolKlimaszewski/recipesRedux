@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { showForm } from "../js/actions/index";
-import { submitRecipe } from "../js/actions/index";
+import { showForm, submitRecipe } from "../js/actions/index";
+import {checkboxes} from "../js/checkboxes";
 
 import uuidv1 from "uuid";
 
@@ -30,6 +30,7 @@ class RecipeForm extends Component {
         }
         this.handleFormDisplay = this.handleFormDisplay.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
         this.handleAddIngredient = this.handleAddIngredient.bind(this);
         this.handlePhotoUrlChange = this.handlePhotoUrlChange.bind(this);
@@ -51,6 +52,22 @@ class RecipeForm extends Component {
         this.setState({
             title: event.target.value
         })
+    }
+
+    handleCheckboxChange(event) {
+        if (this.state.category.includes(event.target.value)) {
+            let categoryArray = [...this.state.category];
+            let index = categoryArray.indexOf(event.target.value);
+            console.log('powtórzenie');
+            categoryArray.splice(index, 1);
+            this.setState({
+                category: categoryArray
+            })
+        } else {
+            this.setState({
+                category: [...this.state.category, event.target.value],
+            })
+        }
     }
 
     handleIngredientsChange(event) {
@@ -89,9 +106,9 @@ class RecipeForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const { title, ingredients, ingredientsArr, photo, recipeSteps, recipeStepsArr, category } = this.state;
+        const { title, ingredientsArr, photo, recipeStepsArr, category } = this.state;
         const id = uuidv1();
-        if (title === "" || ingredientsArr === [] || photo === "" || recipeStepsArr === []) {
+        if (title === "" || ingredientsArr === [] || photo === "" || recipeStepsArr === [] || category === []) {
             alert('fill all fields.');
         }
         else {
@@ -116,6 +133,13 @@ class RecipeForm extends Component {
         let recipeSteps = this.state.recipeStepsArr.map((el) => {
             return <div className="ingredients-item">{el}</div>
         })
+        let checkbox = checkboxes.map((el, i) => {
+            return <div key={"checkbox" + i} className={"form__checkbox-container"}>
+                <input className="form__checkbox" id={el.name} type="checkbox" value={el.value}
+                    onChange={this.handleCheckboxChange} />
+                <label className={"form__label"} htmlFor={el.name}>{el.name}</label>
+            </div>
+        })
         if(this.props.displayForm) {
         return <div>
             <button className="recipe__add" onClick={this.handleFormDisplay}>+</button>
@@ -129,6 +153,9 @@ class RecipeForm extends Component {
                 <p className="form__description">
                     Category:
                     </p>
+                <div className="form__checkboxes">
+                    {checkbox}
+                </div>
                 <p className="form__description">
                     Ingredients:
                 </p>

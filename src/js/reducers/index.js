@@ -1,35 +1,65 @@
-import { ADD_ARTICLE, DELETE_ARTICLE, SUBMIT_RECIPE, TOGGLE_FORM } from "../constants/action-types";
+import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE } from "../constants/action-types";
 const initialState = {
   articles: [],
   recipes: [{
-    title: "test",
+    title: "test title",
       ingredientsArr: ["składnik", "składnik 2"],
-      photo: "url",
-      recipeStepsArr: ["step"],
-      category: ["kategoria"],
-  }],
-  displayForm: true
+      photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+      category: ["kategoria", "test"],
+      id: 1
+  },
+  // {
+  //   title: "test title",
+  //   ingredientsArr: ["składnik", "składnik 2"],
+  //   photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  //   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+  //   category: ["kategoria"],
+  //   id: 2
+  // },
+  // {
+  //   title: "test title",
+  //   ingredientsArr: ["składnik", "składnik 2"],
+  //   photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  //   recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+  //   category: ["kategoria"],
+  //   id: 3
+  // },
+{
+  title: "test title",
+  ingredientsArr: ["składnik", "składnik 2"],
+  photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+  recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+  category: ["kategoria", "snack"],
+  id: 4
+}],
+  displayForm: true,
+  displayRecipe: true,
+  active: -1
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    // Articles
-    case ADD_ARTICLE:
-      return Object.assign({}, state, 
-        {articles: [...state.articles, action.payload] 
-      });
-    case DELETE_ARTICLE:
+      // Recipes form
+    case SUBMIT_FORM:
       return Object.assign({}, state, {
-        articles: [...state.articles.slice(0, action.payload), ...state.articles.slice(action.payload + 1)]
+        recipes: [...state.recipes, action.payload]
+      });
+    case TOGGLE_FORM:
+      return Object.assign({}, state, {
+        displayForm: action.payload
       });
       // Recipes
-    case SUBMIT_RECIPE:
-      return Object.assign({}, state, 
-        {recipes: [...state.recipes, action.payload]
+    case DELETE_RECIPE:
+      return Object.assign({}, state, {
+        recipes: [...state.recipes.slice(0, action.payload), ...state.recipes.slice(action.payload + 1)]
       });
-      // Recipes form
-    case TOGGLE_FORM:
-      return Object.assign({}, state, 
-        {displayForm: action.payload
+    case TOGGLE_RECIPE:
+      return Object.assign({}, state, {
+        displayRecipe: action.payload
+      });
+    case ACTIVE_RECIPE:
+      return Object.assign({}, state, {
+        active: action.payload
       });
     default:
       return state;
