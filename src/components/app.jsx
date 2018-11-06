@@ -6,15 +6,12 @@ import Filters from "./filters.jsx";
 
 export default class App extends React.Component{
   render () {
-  return <div>
-    <div className="container">
-      <Header />
-    
-      <Filters />
-      <h2>Recipes</h2>
-    </div>
-      <Recipes />
-    <RecipeForm />
-  </div>
+    return <div className="container">
+            <Header />
+            <Filters />
+            <h2>Recipes</h2>
+            <Recipes />
+            <RecipeForm />
+          </div>
   }
 };

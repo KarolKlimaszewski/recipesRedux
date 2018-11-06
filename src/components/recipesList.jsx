@@ -72,7 +72,6 @@ class RecipesList extends Component {
             let ing = el.ingredientsArr.map((ing, i) => {
                 return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing}</p>
             })
-            if (this.props.displayRecipe) {
                 if (el.id === this.props.active) {
                     return <div className={"recipe"} key={el.id}>
                         <div className="recipe__row--main">
@@ -103,7 +102,7 @@ class RecipesList extends Component {
                         </div>
                     </div>
                 } else {
-                    return <div className={"recipe col s4"} key={"recipe" + i}>
+                    return <div className={"recipe col s3"} key={"recipe" + i}>
                         <div className="recipe__row--main">
                             <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
                             <div className="recipe__categories">{categories}</div>
@@ -111,17 +110,8 @@ class RecipesList extends Component {
                             <h2 className="recipe__title">{el.title}</h2>
                     </div>
                 }
-            } else {
-                return <div className={"recipe col s4"} key={"recipe" + i}>
-                    <div className="recipe__row--main">
-                        <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
-                        <div className="recipe__categories">{categories}</div>
-                        <h2 className="recipe__title">{el.title}</h2>
-                    </div>
-                </div>
-            }
         });
-        return <div className="container"><div className="row">{recipes}</div></div>
+        return <div className="row">{recipes}</div>
     }
 }
 
