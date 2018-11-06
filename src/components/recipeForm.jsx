@@ -130,14 +130,15 @@ class RecipeForm extends Component {
         let checkbox = checkboxes.map((el, i) => {
             return <p key={i}>
                 <label>
-                    <input type="checkbox" className="filled-in" onChange={this.handleCheckboxChange} />
+                    <input type="checkbox" className="filled-in" onChange={this.handleCheckboxChange} value={el.value} />
                     <span>{el.name}</span>
                 </label>
             </p>
         })
         if(this.props.displayForm) {
-        return <div className="row">
-            <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+</a>
+        return <div className="recipe-form">
+            <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</a>
+            <div className="row">
             <form className="form col s12">
                 <div className="input-field col s6">
                     <input id="title" value={this.state.title}
@@ -173,10 +174,11 @@ class RecipeForm extends Component {
                 <i className="material-icons">Submit</i>
                     </button>
                 </form>
+            </div>
         </div>
     }else{
-        return <div>
-            <button className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+</button>
+            return <div className="recipe-form">
+            <button className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</button>
         </div>
     }
 }

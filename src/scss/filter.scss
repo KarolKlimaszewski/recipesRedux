@@ -10,18 +10,17 @@
 }
 
 .filter__show{
-  width: 10em;
-  padding: 0.5em 2em;
   background: $additional-color;
   border: none;
   color: white;
 }
 
 .filter__checkboxes{
+  background: white;
   display: flex;
   flex-direction: column;
   padding: 0.5em 0;
-  margin-left: 0.5em;
+  // margin-left: 0.5em;
 }
 
 .filter__checkbox-container{
@@ -29,8 +28,6 @@
 }
 
 .filter__run, .filter__clear{
-  width: 15em;
-  padding: 0.5em 2em;
   margin: 0.5em 0;
   background: $additional-color;
   border: none;

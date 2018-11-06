@@ -7,7 +7,7 @@ const mapStateToProps = state => {
     return {
         recipes: state.recipes,
         displayRecipe: state.displayRecipe,
-        active: state.active,
+        activeID: state.activeID,
         categoryFilter: state.categoryFilter
     };
 };
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     return {
         showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
         deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
-        activeRecipe: active => dispatch(activeRecipe(active))
+        activeRecipe: activeID => dispatch(activeRecipe(activeID))
     };
 };
 
@@ -30,7 +30,7 @@ class RecipesList extends Component {
 
     handleShowRecipe(e, el) {
         event.preventDefault();
-        if (this.props.active === el.id) {
+        if (this.props.activeID === el.id) {
             this.props.showRecipe(false)
             this.props.activeRecipe(-1)
         } else {
@@ -72,8 +72,8 @@ class RecipesList extends Component {
             let ing = el.ingredientsArr.map((ing, i) => {
                 return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing}</p>
             })
-                if (el.id === this.props.active) {
-                    return <div className={"recipe"} key={el.id}>
+                if (el.id === this.props.activeID) {
+                    return <div className={"recipe col s12"} key={el.id}>
                         <div className="recipe__row--main">
                             <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>hide</a>
                             {/* <div className="recipe__categories">{categories}</div> */}

@@ -35,7 +35,7 @@ const initialState = {
 }],
   displayForm: true,
   displayRecipe: true,
-  active: -1,
+  activeID: -1,
   displayFilters: true,
   categoryFilter: []
 };
@@ -61,7 +61,7 @@ const rootReducer = (state = initialState, action) => {
       });
     case ACTIVE_RECIPE:
       return Object.assign({}, state, {
-        active: action.payload
+        activeID: action.payload
       });
       // Filters
     case TOGGLE_FILTERS:

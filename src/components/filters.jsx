@@ -85,15 +85,15 @@ export class Filter extends Component {
         if(this.props.displayFilters) {
             return <div className={"filter"}>
                 <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>
-                <h2 className="filter__title">
+                <h5 className="filter__title">
                     Category:
-                    </h2>
+                    </h5>
                 <div className="filter__checkboxes">
                     {checkbox}
                 </div>
-                <h2 className="filter__title">
+                <h5 className="filter__title">
                     Title:
-                    </h2>
+                    </h5>
                 <button className="filter__run btn waves-effect waves-light" onClick={this.handleLaunchFilters}>Launch filters</button>
                 <button className="filter__clear btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
             </div>

@@ -1,6 +1,9 @@
 .recipe{
   background: rgba(black,0.6);
-  margin: 10px;
+  margin: 10px 0;
+  &:nth-child(2n) {
+    background: rgba(black, 0.4);
+  }
 }
 
 .recipe__row{

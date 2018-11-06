@@ -6,7 +6,13 @@
   font-size: 3em;
   line-height: 50px;
   color: white;
-  border-radius: 50%;
+  border-radius: 20px;
+}
+
+.recipe-form{
+  display: flex;
+  flex-direction: column;
+  background: rgba(white, 0.7);
 }
 
 

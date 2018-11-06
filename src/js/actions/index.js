@@ -20,9 +20,9 @@ export const showRecipe = displayRecipe => ({
     type: "TOGGLE_RECIPE",
     payload: displayRecipe
 });
-export const activeRecipe = active => ({
+export const activeRecipe = activeID => ({
     type: "ACTIVE_RECIPE",
-    payload: active
+    payload: activeID
 })
 
 // FORM ACTIONS
