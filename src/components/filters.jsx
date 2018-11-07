@@ -23,8 +23,8 @@ export class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: [],
-            title: null
+            category: "",
+            title: ""
         }
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -34,18 +34,10 @@ export class Filter extends Component {
     }
 
     handleCategoryChange(event) {
-        if (this.state.category.includes(event.target.value)) {
-            let categoryArray = [...this.state.category];
-            let index = categoryArray.indexOf(event.target.value);
-            categoryArray.splice(index, 1);
-            this.setState({
-                category: categoryArray
-            })
-        } else {
-            this.setState({
-                category: [...this.state.category, event.target.value],
-            })
-        }
+        this.setState({
+            selectedOption: event.target.value,
+            category: event.target.value
+        })
     }
 
     handleTitleChange(event) {
@@ -59,14 +51,13 @@ export class Filter extends Component {
     }
 
     handleLaunchFilters() {
-        let recipes = this.props.recipes;
         let recipesFiltered = [];
-        _.filter(recipes, el => {
-            if (this.state.category.length > 0) {
-                if (el.category.includes(this.state.category.map(cat => cat).toString())){
+        _.filter(this.props.recipes, el => {
+            if (this.state.category) {
+                if (el.category.includes(this.state.category)){
                     recipesFiltered.push(el);
                 }
-            }else if(this.state.title.value) {
+            }else if(this.state.title) {
                 if(el.title.includes(this.state.title.value)) {
                     recipesFiltered.push(el);
                 }
@@ -74,6 +65,9 @@ export class Filter extends Component {
              else {
                 return el
             }
+            this.setState({
+                selectedOption: null
+            })
         });
         this.props.launchFilters(recipesFiltered);
             this.setState({
@@ -86,22 +80,22 @@ export class Filter extends Component {
     handleClearFilters() {
         this.props.clearFilters([]);
         this.setState({
-            category: []
+            category: "",
+            selectedOption: ""
         })
-        this.props.toggleFilters(false)
+        
     }
 
     render() {
         let checkbox = checkboxes.map((el, i) => {
             return <p key={i}>
                 <label>
-                    <input type="checkbox" value={el.value} className="filled-in" onChange={this.handleCategoryChange} />
+                    <input type="checkbox" value={el.value} checked={this.state.selectedOption === el.value} className="filled-in" onChange={this.handleCategoryChange} />
                     <span>{el.name}</span>
                 </label>
             </p>
         });
         let duplicates = _.uniq(this.props.recipes.map(el => el.title));
-        console.log(duplicates);
         let selectTitles = duplicates.map(el => {
             return ({ value: el, label: el })
         });

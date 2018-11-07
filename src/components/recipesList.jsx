@@ -78,7 +78,7 @@ class RecipesList extends Component {
                 } else if (cat === "dessert") {
                     return <div className="recipe__category" style={{ backgroundColor: "yellow" }}>{cat}</div>
                 } else {
-                    return <div className="recipe__category" style={{ backgroundColor: "brown" }}>{cat}</div>
+                    return <div className="recipe__category" style={{ backgroundColor: "tomato" }}>{cat}</div>
                 }
             })
             let step = el.recipeStepsArr.map((step, i) => {
@@ -90,7 +90,7 @@ class RecipesList extends Component {
                 if (el.id === this.props.activeID) {
                     return <div className={"recipe col s12"} key={el.id}>
                         <div className="recipe__row--main">
-                            <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>hide</a>
+                            <a className=" waves-effect waves-light btn" onClick={e => this.handleShowRecipe(e, el)}>hide</a>
                             {/* <div className="recipe__categories">{categories}</div> */}
                             <h2 className="recipe__title">{el.title}</h2>
                         </div>
@@ -112,17 +112,17 @@ class RecipesList extends Component {
                             </ul>
                         </div>
                         <div className="recipe__row recipe__row-edit">
-                            <a className="recipe__delete waves-effect waves-light btn-large" onClick={e => this.handleDeleteRecipe(e, el)}>Delete
+                            <a className="recipe__delete waves-effect waves-light btn" onClick={e => this.handleDeleteRecipe(e, el)}>Delete
                         </a>
                         </div>
                     </div>
                 } else {
                     return <div className={"recipe col s6"} key={"recipe" + i}>
                         <div className="recipe__row--main">
-                            <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
+                            <a className=" waves-effect waves-light btn" onClick={e => this.handleShowRecipe(e, el)}>show</a>
                             <div className="recipe__categories">{categories}</div>
                         </div>
-                            <h5 className="recipe__title">{el.title}</h5>
+                            <h6 className="recipe__title">{el.title}</h6>
                     </div>
                 }
         });

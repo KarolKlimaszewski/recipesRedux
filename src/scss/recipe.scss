@@ -33,13 +33,12 @@
 }
 
 .recipe__category{
-  height: 3em;
-  line-height: 3em;
-  padding: 0.1em;
+  padding: 0.4em 0.1em;
   opacity: 0.7;
-  margin-left: 15px;
+  margin-left: 10px;
   transition: 0.5s;
   color: $main-color;
+  border-radius: 10px;
   &:hover{
     opacity: 1;
   }

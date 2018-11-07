@@ -24,8 +24,7 @@ const initialState = {
         ],
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         category: [
-            "seafood",
-            "shrimp",
+            "snack",
             "dinner"
         ]
     },
@@ -41,13 +40,89 @@ const initialState = {
         ],
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         category: [
-            "fruit",
             "dessert",
-            "strawberries",
-            "copycat",
-            "untried"
+            "snack"
         ]
-    }],
+    },
+    {
+        title: "soup",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["snack", "dinner"],
+        id: 1,
+      },
+      {
+        title: "chicken",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "snack"],
+        id: 4
+      },
+      {
+        title: "tomato soup",
+        ingredientsArr: [
+          "2/3 cup panko",
+          "14 teaspoon red pepper flakes",
+          "12 lemon, zested and juiced",
+          "1 extra-large egg yolk",
+          "1 teaspoon rosemary, minced",
+          "3 tablespoon parsley, minced",
+          "4 clove garlic, minced",
+          "14 cup shallots, minced",
+          "8 tablespoon unsalted butter, at room temperature",
+          "2 tablespoon dry white wine",
+          "Freshly ground black pepper",
+          "Kosher salt",
+          "3 tablespoon olive oil",
+          "2 pound frozen shrimp"
+        ],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "snack"],
+        id: 3
+      },
+      {
+        title: "test title2",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["drink", "snack"],
+        id: 2
+      },
+      {
+        title: "chicken burger",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "breakfast"],
+        id: 66
+      },
+      {
+        title: "mohito drink",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "drink"],
+        id: 55
+      },
+      {
+        title: "chicken",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "snack"],
+        id: 12412412
+      },
+      {
+        title: "chicken",
+        ingredientsArr: ["składnik", "składnik 2"],
+        photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
+        category: ["dessert", "snack"],
+        id: 32321
+      }],
   displayForm: true,
   displayRecipe: true,
   activeID: -1,
