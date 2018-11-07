@@ -4077,7 +4077,6 @@ body.keyboard-focused .dropdown-content li:focus {
           user-select: none;
   -webkit-tap-highlight-color: transparent;
   vertical-align: middle;
-  z-index: 1;
   transition: .3s ease-out; }
   .waves-effect .waves-ripple {
     position: absolute;
@@ -6626,7 +6625,7 @@ input[type=range]::-ms-thumb {
     opacity: 1; }
 
 .recipe__title {
-  margin: 0.5em 2em;
+  margin: 0.5em 0;
   color: white;
   font-weight: 700; }
 
@@ -6686,10 +6685,6 @@ input[type=range]::-ms-thumb {
     background: white; }
 
 .filter {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   margin-top: 1em;
   background: rgba(200, 145, 91, 0.5); }
 
@@ -6707,7 +6702,7 @@ input[type=range]::-ms-thumb {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  padding: 0.5em 0; }
+  padding: 1em 0; }
 
 .filter__checkbox-container {
   margin: 0.3em 0; }

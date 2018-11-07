@@ -31,9 +31,9 @@ export const toggleFilters = displayFilters => ({
     type: "TOGGLE_FILTERS",
     payload: displayFilters
 });
-export const launchCategoryFilter = recipe => ({
-    type: "CATEGORY_FILTER",
-    payload: recipe
+export const launchFilters = filters => ({
+    type: "LAUNCH_FILTERS",
+    payload: filters
 });
 export const clearFilters = filters => ({
     type: "CLEAR_FILTERS",

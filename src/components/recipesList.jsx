@@ -8,7 +8,7 @@ const mapStateToProps = state => {
         recipes: state.recipes,
         displayRecipe: state.displayRecipe,
         activeID: state.activeID,
-        categoryFilter: state.categoryFilter
+        filters: state.filters
     };
 };
 
@@ -44,15 +44,30 @@ class RecipesList extends Component {
     }
 
     render() {
-        let catFilter = this.props.categoryFilter.map(cat => cat);
-        let filtred = _.filter(this.props.recipes, (el) => {
-            if (this.props.categoryFilter.length >= 1) {
-                return el.category.includes(catFilter.toString())
-            }else{
-                return el
-            }
-        });
-        let recipes = filtred.map((el, i) => {
+        // let catFilter = this.props.filters.category.map(cat => cat);
+        // let filtered = _.filter(this.props.recipes, (el) => {
+        //     if (!_.isEmpty(this.props.filters)) {
+        //         if(this.props.filters.category.length > 0) {
+        //         return el.category.includes(catFilter.toString())
+        //         }else{
+        //             return el
+        //         }
+        //     }else{
+        //         return el
+        //     }
+        // });
+        let filtered = this.props.recipes;
+        if(this.props.filters.length > 0) {
+            filtered = this.props.filters
+        }
+            // if (!_.isEmpty(that.props.filtered)) {
+            //     console.log('isnt empty')
+            //     return that.props.filtered
+            // }else{
+            //     console.log('is empty')
+            //     return that.props.recipes
+            // }
+        let recipes = filtered.map((el, i) => {
             let categories = el.category.map(cat => {
                 if (cat === "snack") {
                     return <div className="recipe__category" style={{ backgroundColor: "red" }}>{cat}</div>
@@ -102,12 +117,12 @@ class RecipesList extends Component {
                         </div>
                     </div>
                 } else {
-                    return <div className={"recipe col s3"} key={"recipe" + i}>
+                    return <div className={"recipe col s6"} key={"recipe" + i}>
                         <div className="recipe__row--main">
                             <a className=" waves-effect waves-light btn-large" onClick={e => this.handleShowRecipe(e, el)}>show</a>
                             <div className="recipe__categories">{categories}</div>
                         </div>
-                            <h2 className="recipe__title">{el.title}</h2>
+                            <h5 className="recipe__title">{el.title}</h5>
                     </div>
                 }
         });
