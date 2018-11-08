@@ -6486,6 +6486,30 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
+.menu {
+  background: #C8915B;
+  list-style-type: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 20px 0; }
+
+.menu__link {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 10px 20px; }
+  .menu__link:hover {
+    color: #361712;
+    text-decoration: none; }
+  .menu__link--active {
+    color: #361712;
+    text-decoration: none; }
+    .menu__link--active-main {
+      text-transform: uppercase; }
+
 .header {
   background: white;
   display: -ms-flexbox;

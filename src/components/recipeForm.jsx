@@ -137,7 +137,7 @@ class RecipeForm extends Component {
         })
         if(this.props.displayForm) {
         return <div className="recipe-form">
-            <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</a>
+            {/* <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</a> */}
             <div className="row">
             <form className="form col s12">
                 <div className="input-field col s6">

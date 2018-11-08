@@ -1,4 +1,4 @@
-import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE, TOGGLE_FILTERS, LAUNCH_FILTERS, CLEAR_FILTERS } from "../constants/action-types";
+import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE, ACTIVE_RECIPE_DISPLAY, TOGGLE_FILTERS, LAUNCH_FILTERS, CLEAR_FILTERS } from "../constants/action-types";
 // import RECIPES_DATABASE from "../recipes";
 const initialState = {
   articles: [],
@@ -126,6 +126,7 @@ const initialState = {
   displayForm: true,
   displayRecipe: true,
   activeID: -1,
+  active: {},
   displayFilters: true,
   filters: []
 };
@@ -152,6 +153,10 @@ const rootReducer = (state = initialState, action) => {
     case ACTIVE_RECIPE:
       return Object.assign({}, state, {
         activeID: action.payload
+      });
+    case ACTIVE_RECIPE_DISPLAY:
+      return Object.assign({}, state, {
+        active: action.payload
       });
       // Filters
     case TOGGLE_FILTERS:

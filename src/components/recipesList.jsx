@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "underscore";
-import { deleteRecipe, showRecipe, activeRecipe } from "../js/actions/index";
+import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay } from "../js/actions/index";
+
+import {
+    HashRouter,
+    Route,
+    Link,
+    Switch,
+    NavLink,
+} from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
         recipes: state.recipes,
         displayRecipe: state.displayRecipe,
         activeID: state.activeID,
+        active: state.active,
         filters: state.filters
     };
 };
@@ -16,7 +25,8 @@ const mapDispatchToProps = dispatch => {
     return {
         showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
         deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
-        activeRecipe: activeID => dispatch(activeRecipe(activeID))
+        activeRecipe: activeID => dispatch(activeRecipe(activeID)),
+        activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active))
     };
 };
 
@@ -30,13 +40,15 @@ class RecipesList extends Component {
 
     handleShowRecipe(e, el) {
         event.preventDefault();
-        if (this.props.activeID === el.id) {
-            this.props.showRecipe(false)
-            this.props.activeRecipe(-1)
-        } else {
-            this.props.activeRecipe(el.id);
-            this.props.showRecipe(true)
-        }
+        this.props.activeRecipeDisplay(el);
+        // if (this.props.activeID === el.id) {
+        //     this.props.showRecipe(false)
+        //     this.props.activeRecipe(-1)
+        // } else {
+        //     this.props.activeRecipe(el.id);
+        //     this.props.activeRecipeDisplay(el);
+        //     this.props.showRecipe(true);
+        // }
     }
 
     handleDeleteRecipe(event, el) {
@@ -119,7 +131,9 @@ class RecipesList extends Component {
                 } else {
                     return <div className={"recipe col s6"} key={"recipe" + i}>
                         <div className="recipe__row--main">
-                            <a className=" waves-effect waves-light btn" onClick={e => this.handleShowRecipe(e, el)}>show</a>
+                            <NavLink to={"/recipes/:" + el.id} className={"menu__link"}
+                                className={"waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>show</NavLink>
+                            {/* <a className=" waves-effect waves-light btn" onClick={e => this.handleShowRecipe(e, el)}>show</a> */}
                             <div className="recipe__categories">{categories}</div>
                         </div>
                             <h6 className="recipe__title">{el.title}</h6>

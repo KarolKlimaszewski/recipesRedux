@@ -13,6 +13,7 @@ $large: "screen and (min-width: 992px)";
 @import './materialize/materialize.scss';
 
 //PARTIALS:
+@import 'menu.scss';
 @import 'header.scss';
 // @import 'loader.scss';
 @import 'recipeForm.scss';

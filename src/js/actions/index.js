@@ -24,6 +24,10 @@ export const activeRecipe = activeID => ({
     type: "ACTIVE_RECIPE",
     payload: activeID
 })
+export const activeRecipeDisplay = active => ({
+    type: "ACTIVE_RECIPE_DISPLAY",
+    payload: active
+})
 
 // FORM ACTIONS
 

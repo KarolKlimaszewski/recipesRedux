@@ -3,7 +3,8 @@ import Header from "./header.jsx";
 import RecipeForm from "./recipeForm.jsx";
 import Recipes from "./recipesList.jsx";
 import Filters from "./filters.jsx";
-
+import DisplayRecipe from "./displayRecipe.jsx";
+import WelcomeComponent from "./WelcomeComponent.jsx";
 import {
     HashRouter,
     Route,
@@ -20,29 +21,25 @@ export default class App extends React.Component{
             <Header />
           <ul className={"menu"}>
             <li className={"menu__item"}><NavLink to={"/"} className={"menu__link"}
-              activeStyle={{ color: "navy" }}>Main page</NavLink>
+              activeClassName={"menu__link menu__link--active-main"}>Main page</NavLink>
             </li>
             <li className={"menu__item"}><NavLink to={"/filters"} className={"menu__link"}
-              activeStyle={{ color: "navy" }}>Filters</NavLink>
+              activeClassName={"menu__link menu__link--active"}>Filters</NavLink>
             </li>
             <li className={"menu__item"}><NavLink to={"/recipes"} className={"menu__link"}
-              activeStyle={{ color: "navy" }}>Recipes</NavLink></li>
+              activeClassName={"menu__link menu__link--active"}>Recipes</NavLink></li>
             <li className={"menu__item"}><NavLink to={"/recipe-form"} className={"menu__link"}
-              activeStyle={{ color: "navy" }}>Add new recipe</NavLink></li>
+              activeClassName={"menu__link menu__link--active"}>Add new recipe</NavLink></li>
           </ul>
         <Switch>
-          {/* <Route exact path='/' component={Header} /> */}
+          <Route exact path='/' component={WelcomeComponent} />
           <Route path='/filters' component={Filters} />
-          <Route path='/recipes' component={Recipes} />
+          <Route exact path='/recipes' component={Recipes} />
+          <Route path='/recipes/:id' component={DisplayRecipe} />
           <Route path='/recipe-form' component={RecipeForm} />
         </Switch>
           </div>
       </HashRouter>
-            {/* <Header />
-            <Filters />
-            <h2>Recipes</h2>
-            <Recipes />
-            <RecipeForm /> */}
           </div>
   }
 };
