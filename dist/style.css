@@ -6601,7 +6601,8 @@ input[type=range]::-ms-thumb {
 
 .recipe {
   background: rgba(0, 0, 0, 0.6);
-  margin: 10px 0; }
+  margin: 10px 0;
+  min-height: 250px !important; }
   .recipe:nth-child(2n) {
     background: rgba(0, 0, 0, 0.4); }
 

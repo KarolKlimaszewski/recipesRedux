@@ -3,13 +3,7 @@ import { connect } from "react-redux";
 import _ from "underscore";
 import { deleteRecipe, showRecipe, activeRecipeDisplay } from "../js/actions/index";
 
-import {
-    HashRouter,
-    Route,
-    Link,
-    Switch,
-    NavLink,
-} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
@@ -83,8 +77,10 @@ class ShowRecipe extends Component {
                 </ul>
             </div>
             <div className="recipe__row recipe__row-edit">
-                <NavLink to={"/recipes"} className={"menu__link"}
-                    className={"recipe__delete waves-effect waves-light btn"} onClick={e => this.handleDeleteRecipe(e, this.props.active)}>delete</NavLink>
+                <a className={"recipe__delete waves-effect waves-light btn"}
+                    onClick={e => this.handleEditRecipe(e, this.props.active)}>edit</a>
+                <NavLink to={"/recipes"} className={"recipe__delete waves-effect waves-light btn"} 
+                    onClick={e => this.handleDeleteRecipe(e, this.props.active)}>delete</NavLink>
             </div>
         </div>
     }

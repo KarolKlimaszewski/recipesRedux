@@ -1,27 +1,22 @@
 export const checkboxes = [
     {
         name: 'snack',
-        value: 'snack',
-        sortValue: 'sortSnack',
+        value: 'snack'
     },
     {
         name: 'breakfast',
-        value: 'breakfast',
-        sortValue: 'sortBreakfast',
+        value: 'breakfast'
     },
     {
         name: 'dessert',
-        value: 'dessert',
-        sortValue: 'sortDessert',
+        value: 'dessert'
     },
     {
         name: 'dinner',
-        value: 'dinner',
-        sortValue: 'sortDinner',
+        value: 'dinner'
     },
     {
         name: 'drink',
-        value: 'drink',
-        sortValue: 'sortDrink',
+        value: 'drink'
     },
 ];

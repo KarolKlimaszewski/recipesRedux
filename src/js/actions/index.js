@@ -1,5 +1,4 @@
 // RECIPES FORM ACTIONS
-
 export const submitRecipe = recipe => ({
     type: "SUBMIT_FORM",
     payload: recipe
@@ -10,7 +9,7 @@ export const showForm = displayForm => ({
     payload: displayForm
 });
 
-// RECIPES ACTIONS
+// RECIPES ITEMS ACTIONS
 
 export const deleteRecipe = recipe => ({
     type: "DELETE_RECIPE",
@@ -20,16 +19,12 @@ export const showRecipe = displayRecipe => ({
     type: "TOGGLE_RECIPE",
     payload: displayRecipe
 });
-export const activeRecipe = activeID => ({
-    type: "ACTIVE_RECIPE",
-    payload: activeID
-})
 export const activeRecipeDisplay = active => ({
     type: "ACTIVE_RECIPE_DISPLAY",
     payload: active
 })
 
-// FORM ACTIONS
+// RECIPES FILTERS ACTIONS
 
 export const toggleFilters = displayFilters => ({
     type: "TOGGLE_FILTERS",

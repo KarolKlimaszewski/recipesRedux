@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { showForm, submitRecipe } from "../js/actions/index";
 import {checkboxes} from "../js/checkboxes";
+import Select from "react-select";
+import { ingredients_DATABASE, ingredients_DATABASE_forSelect} from "../js/ingredients";
 
 import uuidv1 from "uuid";
 
@@ -33,9 +35,11 @@ class RecipeForm extends Component {
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
         this.handleAddIngredient = this.handleAddIngredient.bind(this);
+        this.handleDeleteIngredient = this.handleDeleteIngredient.bind(this);
         this.handlePhotoUrlChange = this.handlePhotoUrlChange.bind(this);
         this.handleRecipeStepsChange = this.handleRecipeStepsChange.bind(this);
         this.handleAddRecipeStep = this.handleAddRecipeStep.bind(this);
+        this.handleDeleteRecipeStep = this.handleDeleteRecipeStep.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -67,15 +71,29 @@ class RecipeForm extends Component {
 
     handleIngredientsChange(event) {
         this.setState({
-            ingredients: event.target.value
+            ingredients: event
         })
     }
 
     handleAddIngredient(event) {
         event.preventDefault();
-        this.state.ingredientsArr.push(this.state.ingredients);
+        if(!this.state.ingredientsArr.includes(this.state.ingredients.value)) {   
+        this.state.ingredientsArr.push(this.state.ingredients.value);
         this.setState({
             ingredients: ""
+        })
+    }
+    }
+
+    handleDeleteIngredient(event, el) {
+        event.preventDefault();
+        let ingArr = this.state.ingredientsArr;
+        let index = ingArr.indexOf(el);
+        if(index > -1) {
+            ingArr.splice(index, 1);
+        }
+        this.setState({
+            ingredientsArr: ingArr
         })
     }
 
@@ -84,6 +102,18 @@ class RecipeForm extends Component {
         this.state.recipeStepsArr.push(this.state.recipeSteps);
         this.setState({
             recipeSteps: ""
+        })
+    }
+
+    handleDeleteRecipeStep(event, el) {
+        event.preventDefault();
+        let recArr = this.state.recipeStepsArr;
+        let index = recArr.indexOf(el);
+        if (index > -1) {
+            recArr.splice(index, 1);
+        }
+        this.setState({
+            recipeStepsArr: recArr
         })
     }
 
@@ -121,11 +151,18 @@ class RecipeForm extends Component {
         }
     }
     render() {
+        console.log(this.state.ingredientsArr);
         let ingredients = this.state.ingredientsArr.map((el, i) => {
-            return <div key={i} className="ingredients-item">{el}</div>
+            return <div key={i} className="ingredients-item">
+            {el}
+                <button className="ingredients-item__delete" onClick={e => this.handleDeleteIngredient(e, el)}>X</button>
+            </div>
         })
         let recipeSteps = this.state.recipeStepsArr.map((el, i) => {
-            return <div key={i} className="ingredients-item">{el}</div>
+            return <div key={i} className="ingredients-item">
+            {el}
+                <button className="recipeStep-item__delete" onClick={e => this.handleDeleteRecipeStep(e, el)}>X</button>
+            </div>
         })
         let checkbox = checkboxes.map((el, i) => {
             return <p key={i}>
@@ -135,7 +172,7 @@ class RecipeForm extends Component {
                 </label>
             </p>
         })
-        if(this.props.displayForm) {
+        // if(this.props.displayForm) {
         return <div className="recipe-form">
             {/* <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</a> */}
             <div className="row">
@@ -150,13 +187,19 @@ class RecipeForm extends Component {
                         onChange={this.handlePhotoUrlChange} />
                     <label htmlFor="photo" className="active">Photo Url:</label>
                 </div>
-                <div className="input-field col s6">
+                {/* <div className="input-field col s6">
                     <input id="ingredients" value={this.state.ingredients}
                         onChange={this.handleIngredientsChange} />
                     <label htmlFor="ingredients" className="active">Ingredients:</label>
                     <div className="ingredients">{ingredients}</div>
                     <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddIngredient}>Add ingredient</button>
-                </div>
+                </div> */}
+                    <div className="col s6">
+                        <Select placeholder={"Choose ingredient..."} options={ingredients_DATABASE_forSelect}
+                         value={this.state.ingredients} onChange={this.handleIngredientsChange} />
+                        <div className="ingredients">{ingredients}</div>
+                        <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddIngredient}>Add ingredient</button>
+                    </div>
                 <div className="input-field col s6">
                     <input id="recipeSteps" value={this.state.recipeSteps}
                         onChange={this.handleRecipeStepsChange} />
@@ -176,11 +219,11 @@ class RecipeForm extends Component {
                 </form>
             </div>
         </div>
-    }else{
-            return <div className="recipe-form">
-            <button className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</button>
-        </div>
-    }
+    // }else{
+    //         return <div className="recipe-form">
+    //         <button className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</button>
+    //     </div>
+    // }
 }
 }
 const Form = connect(mapStateToProps, mapDispatchToProps)(RecipeForm);

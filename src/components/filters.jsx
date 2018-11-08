@@ -24,10 +24,12 @@ export class Filter extends Component {
         super(props);
         this.state = {
             category: "",
-            title: ""
+            title: "",
+            ingredients: ""
         }
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
         this.handleShowSorting = this.handleShowSorting.bind(this);
         this.handleLaunchFilters = this.handleLaunchFilters.bind(this);
         this.handleClearFilters = this.handleClearFilters.bind(this);
@@ -44,6 +46,12 @@ export class Filter extends Component {
         this.setState({
             title: event
         });
+    }
+
+    handleIngredientsChange(event) {
+        this.setState({
+            ingredients: event
+        })
     }
 
     handleShowSorting() {
@@ -95,10 +103,11 @@ export class Filter extends Component {
                 </label>
             </p>
         });
-        let duplicates = _.uniq(this.props.recipes.map(el => el.title));
-        let selectTitles = duplicates.map(el => {
-            return ({ value: el, label: el })
+        let duplicatesInTitle = _.uniq(this.props.recipes.map(el => el.title));
+        let selectTitles = duplicatesInTitle.map(el => {
+            return { value: el, label: el }
         });
+
         if(this.props.displayFilters) {
             return <div className={"filter"}>
                 <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>

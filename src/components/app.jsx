@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "./header.jsx";
-import RecipeForm from "./recipeForm.jsx";
+import RecipeForm from "./form.jsx";
 import Recipes from "./recipesList.jsx";
 import Filters from "./filters.jsx";
-import DisplayRecipe from "./displayRecipe.jsx";
-import WelcomeComponent from "./WelcomeComponent.jsx";
+import DisplayRecipe from "./recipeDisplay.jsx";
+import WelcomeComponent from "./welcome.jsx";
 import {
     HashRouter,
     Route,
