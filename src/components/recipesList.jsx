@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import _ from "underscore";
 import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay } from "../js/actions/index";
 import Filters from "./filters.jsx";
+import Footer from "./footer.jsx";
 
 import {
     HashRouter,
@@ -46,30 +47,34 @@ class RecipesList extends Component {
         let recipes = filtered.map((el, i) => {
             let categories = el.category.map(cat => {
                 if (cat === "snack") {
-                    return <div className="recipe__category" style={{ backgroundColor: "red" }}>{cat}</div>
+                    return <div className="recipe-mini__category recipe-mini__category--snack"></div>
                 } else if (cat === "breakfast") {
-                    return <div className="recipe__category" style={{ backgroundColor: "green" }}>{cat}</div>
+                    return <div className="recipe-mini__category recipe-mini__category--breakfast"></div>
                 } else if (cat === "dinner") {
-                    return <div className="recipe__category" style={{ backgroundColor: "blue" }}>{cat}</div>
+                    return <div className="recipe-mini__category recipe-mini__category--dinner"></div>
                 } else if (cat === "dessert") {
-                    return <div className="recipe__category" style={{ backgroundColor: "yellow" }}>{cat}</div>
-                } else {
-                    return <div className="recipe__category" style={{ backgroundColor: "tomato" }}>{cat}</div>
+                    return <div className="recipe-mini__category recipe-mini__category--dessert"></div>
+                } else if(cat === "drink") {
+                    return <div className="recipe-mini__category recipe-mini__category--drink"></div>
                 }
             })
-                    return <div className={"recipe-mini-container col s3"} key={"recipe" + i}>
+                    return <div className={"recipe-mini-container col s12 m6 l4 xl3"} key={"recipe" + i}>
                         <div className="recipe__row--main">
-                            <NavLink to={"/recipes/:" + el.id} className={"menu__link"}
-                                className={"waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>show</NavLink>
-                            <div className="recipe__categories">{categories}</div>
+                            <NavLink to={"/recipes/:" + el.id}
+                                className={"filter-btn waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>show</NavLink>
+                            <div className="recipe-mini__category-container">{categories}</div>
                         </div>
-                            <h6 className="recipe__title">{el.title}</h6>
+                        <div className="recipe-mini__title-container">
+                        <h6 className="recipe-mini__title">{el.title}</h6>
+                        </div>
                         <img src={el.photo} alt="See this? Please try to update photo address (url)."
                             className="recipe__img" />
                     </div>
         });
-        return <div className="row">
+        return <div><div className="row">
         {recipes}
+        </div>
+        <Footer />
         </div>
     }
 }

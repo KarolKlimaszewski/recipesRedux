@@ -1,9 +1,66 @@
 .recipe-mini-container{
         background: rgba(black, 0.6);
         margin: 10px 0;
-        min-height: 300px !important;
+        @media #{$mid} {
+            min-height: 400px;
+        }
+
 
         &:nth-child(2n) {
             background: rgba(black, 0.4);
         }
+}
+.recipe-mini__title-container{
+    display: flex;
+    align-items: flex-end;
+    min-height: 80px;
+
+    @media #{$xlarge} {
+        min-height: 100px;
+    }
+    .recipe-mini__title {
+        margin: 0.5em 0;
+        color: white;
+        font-weight: 700;
+    }
+}
+
+.recipe-mini__category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.recipe-mini__category {
+    opacity: 0.7;
+    margin-left: 10px;
+    height: 32px;
+    width: 32px;
+    transition: 0.5s;
+    color: $main-color;
+    border-radius: 10px;
+    background-size: cover;
+
+    &--snack{
+        background-image: url("../../images/icons/fries.png");
+
+    }
+    &--breakfast{
+        background-image: url("../../images/icons/sandwich.png");
+    }
+    &--dinner{
+        background-image: url("../../images/icons/turkey.png");
+    }
+    &--dessert{
+        background-image: url("../../images/icons/cupcake.png");
+    }
+    &--drink{
+        background-image: url("../../images/icons/glass.png");
+    }
+
+    &:hover {
+        opacity: 1;
+        cursor: default;
+    }
 }

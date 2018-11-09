@@ -72,7 +72,6 @@ export class Filter extends Component {
                 }
             } else if (this.state.ingredients) {
                 el.ingredientsArr.map(ing => {
-                    console.log(ing);
                     if(ing.title.includes(this.state.ingredients.value)){
                         recipesFiltered.push(el);
                     }
@@ -119,7 +118,7 @@ export class Filter extends Component {
 
         if(this.props.displayFilters) {
             return <div className={"filter"}>
-                <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>
+                <button className="filter-btn btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>
                 <div className="row">
                     <h5 className="filter__title">
                         Category:
@@ -136,13 +135,13 @@ export class Filter extends Component {
                         <Select placeholder={"Ingredients..."} options={ingredients_DATABASE_forSelect} value={this.state.ingredients} onChange={this.handleIngredientsChange} />
                     </div>
                 </div>
-                <button className="filter__run btn waves-effect waves-light" onClick={this.handleLaunchFilters}>Launch filters</button>
-                <button className="filter__clear btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
+                <button className="filter-btn btn waves-effect waves-light" onClick={this.handleLaunchFilters}>Launch filters</button>
+                <button className="filter-btn btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
             </div>
         } else {
             return <div className={"filter"}>
-                <button className="filter__show btn waves-effect waves-light" onClick={this.handleShowSorting}>Show filters</button>
-                <button className="filter__clear btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
+                <button className="filter-btn btn waves-effect waves-light" onClick={this.handleShowSorting}>Show filters</button>
+                <button className="filter-btn btn waves-effect waves-light" onClick={this.handleClearFilters}>Clear filters</button>
             </div>
         }
     }

@@ -11,12 +11,15 @@ export const RECIPES = [
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         category: [
             "snack",
-            "dinner"
+            "dinner",
+            "breakfast",
+            "drink",
+            "dessert"
         ]
     },
     {
         id: "4",
-        title: "Strawberries Romanov (La Madeleine copycat)",
+        title: "Strawberries Romanov (La Madeleine copycat) zzzzzzz asdasdas",
         recipeStepsArr: ["Wash strawberries and cut the tops off. Let strawberries drain.  Mix together heavy whipping cream, powdered sugar, and the brandy. Beat with a mixer till this becomes thick.  Place strawberries into glasses and spoon over the sauce.\n"],
         ingredientsArr: [{
             title: "milk",
@@ -25,8 +28,11 @@ export const RECIPES = [
         }],
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         category: [
-            "dessert",
-            "snack"
+            "snack",
+            "dinner",
+            "breakfast",
+            "drink",
+            "dessert"
         ]
     },
     {
@@ -50,7 +56,12 @@ export const RECIPES = [
         }],
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-        category: ["dessert", "snack"],
+        category: ["snack",
+            "dinner",
+            "breakfast",
+            "drink",
+            "dessert"
+        ],
         id: 4
     },
     {
@@ -86,7 +97,12 @@ export const RECIPES = [
         }],
         photo: "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
         recipeStepsArr: ["step", "step2", "step3", "step4", "step5"],
-        category: ["dessert", "breakfast"],
+        category: ["snack",
+            "dinner",
+            "breakfast",
+            "drink",
+            "dessert"
+        ],
         id: 66
     },
     {

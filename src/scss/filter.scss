@@ -9,10 +9,11 @@
   color: $main-color;
 }
 
-.filter__show{
-  background: $additional-color;
-  border: none;
-  color: white;
+.filter-btn{
+    background: $additional-color;
+    border: none;
+    color: white;
+    margin-right: 10px;
 }
 
 .filter__checkboxes{
@@ -25,14 +26,6 @@
 
 .filter__checkbox-container{
   margin: 0.3em 0;
-}
-
-.filter__run, .filter__clear{
-  margin: 0.5em 0;
-  background: $additional-color;
-  border: none;
-  color: white;
-  align-self: center;
 }
 
 .filter__checkbox {

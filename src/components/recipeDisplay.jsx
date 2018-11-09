@@ -56,8 +56,7 @@ class ShowRecipe extends Component {
             })
         return <div className={"recipe-container col s12"} key={this.props.active.id}>
             <div className="recipe__row--main">
-                <NavLink to={"/recipes"} className={"menu__link"}
-                    className={"waves-effect waves-light btn"}>back</NavLink>
+                <NavLink to={"/recipes"} className={"menu__link"} className={"filter-btn waves-effect waves-light btn"}>back</NavLink>
                 <h2 className="recipe__title">{this.props.active.title}</h2>
             </div>
             <div className="recipe__row">
