@@ -6487,20 +6487,32 @@ input[type=range]::-ms-thumb {
     margin-top: 1.2rem; } }
 
 .menu {
-  background: #C8915B;
-  list-style-type: none;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  background: #C8915B;
+  list-style-type: none;
   padding: 20px 0; }
+  @media screen and (min-width: 600px) {
+    .menu {
+      -ms-flex-direction: row;
+          flex-direction: row; } }
 
 .menu__link {
   text-decoration: none;
   color: white;
   font-weight: 700;
   font-size: 1.5rem;
-  padding: 10px 20px; }
+  padding: 20px 10px; }
+  @media screen and (min-width: 600px) {
+    .menu__link {
+      padding: 10px; } }
+  @media screen and (min-width: 992px) {
+    .menu__link {
+      padding: 10px 20px; } }
   .menu__link:hover {
     color: #361712;
     text-decoration: none; }
@@ -6561,16 +6573,20 @@ input[type=range]::-ms-thumb {
   border-radius: 20px; }
 
 .recipe-form {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   background: rgba(255, 255, 255, 0.7); }
+
+.recipe-form-label {
+  position: absolute;
+  top: -0.7rem; }
 
 .form__description {
   margin: 0;
   font-size: 1.2em;
   color: #361712; }
+
+.form-button {
+  height: 100%;
+  padding: 15px 0 !important; }
 
 .form__input {
   border: 1px solid #361712;
@@ -6592,19 +6608,23 @@ input[type=range]::-ms-thumb {
 .form__checkboxes {
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
   padding: 0.5em 0; }
   .form__checkboxes p {
     margin: 1em; }
+  @media screen and (min-width: 992px) {
+    .form__checkboxes {
+      -ms-flex-direction: row;
+          flex-direction: row; } }
 
 .form__checkbox-container {
   margin: 0.3em 0; }
 
-.recipe {
+.recipe-container {
   background: rgba(0, 0, 0, 0.6);
   margin: 10px 0;
-  min-height: 250px !important; }
-  .recipe:nth-child(2n) {
-    background: rgba(0, 0, 0, 0.4); }
+  min-height: 300px !important; }
 
 .recipe__row {
   display: block;
@@ -6646,10 +6666,12 @@ input[type=range]::-ms-thumb {
   color: #361712;
   border-radius: 10px; }
   .recipe__category:hover {
-    opacity: 1; }
+    opacity: 1;
+    cursor: default; }
 
 .recipe__title {
   margin: 0.5em 0;
+  min-height: 50px;
   color: white;
   font-weight: 700; }
 
@@ -6707,6 +6729,13 @@ input[type=range]::-ms-thumb {
     background: red; }
   .recipe-btn__toggle {
     background: white; }
+
+.recipe-mini-container {
+  background: rgba(0, 0, 0, 0.6);
+  margin: 10px 0;
+  min-height: 300px !important; }
+  .recipe-mini-container:nth-child(2n) {
+    background: rgba(0, 0, 0, 0.4); }
 
 .filter {
   margin-top: 1em;
@@ -6780,6 +6809,75 @@ input[type=range]::-ms-thumb {
     height: 2px;
     box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
     transform: rotate(45deg); }
+
+.recipe-steps-list {
+  width: 80%;
+  margin: 30px auto 0 auto;
+  padding: 40px 0;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.3); }
+
+.recipe-steps-list__item {
+  border-top: 2px dashed;
+  border-color: #361712 !important;
+  margin: 0;
+  padding: 30px;
+  counter-increment: section;
+  position: relative; }
+
+.recipe-steps-list__item:nth-child(even):before {
+  content: counter(section);
+  right: 100%;
+  margin-right: -20px;
+  position: absolute;
+  border-radius: 50%;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+  background-color: #361712;
+  text-align: center;
+  color: white;
+  font-size: 110%; }
+
+.recipe-steps-list__item:nth-child(odd):before {
+  content: counter(section);
+  left: 100%;
+  margin-left: -20px;
+  position: absolute;
+  border-radius: 50%;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+  background-color: #361712;
+  text-align: center;
+  color: white;
+  font-size: 110%; }
+
+.recipe-steps-list__item:nth-child(even) {
+  border-left: 2px dashed;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  margin-right: 30px;
+  padding-right: 0; }
+
+.recipe-steps-list__item:nth-child(odd) {
+  border-right: 2px dashed;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-left: 30px;
+  padding-left: 0; }
+
+.recipe-steps-list__item:first-child {
+  border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0; }
+
+.recipe-steps-list__item:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.recipe-steps-img {
+  max-width: 30%; }
 
 * {
   margin: 0;

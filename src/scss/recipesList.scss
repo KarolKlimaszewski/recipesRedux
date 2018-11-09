@@ -1,0 +1,9 @@
+.recipe-mini-container{
+        background: rgba(black, 0.6);
+        margin: 10px 0;
+        min-height: 300px !important;
+
+        &:nth-child(2n) {
+            background: rgba(black, 0.4);
+        }
+}

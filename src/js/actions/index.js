@@ -15,10 +15,6 @@ export const deleteRecipe = recipe => ({
     type: "DELETE_RECIPE",
     payload: recipe
 });
-export const showRecipe = displayRecipe => ({
-    type: "TOGGLE_RECIPE",
-    payload: displayRecipe
-});
 export const activeRecipeDisplay = active => ({
     type: "ACTIVE_RECIPE_DISPLAY",
     payload: active

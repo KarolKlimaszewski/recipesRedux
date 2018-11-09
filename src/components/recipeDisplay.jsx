@@ -48,12 +48,13 @@ class ShowRecipe extends Component {
 
     render() {
             let step = this.props.active.recipeStepsArr.map((step, i) => {
-                return <li key={"recipeStep" + i} className="recipe__steps-list-item">{step}</li>
+                return <p key={"recipeStep" + i} className="recipe-steps-list__item">{step}</p>
             })
+            console.log(this.props.active)
             let ing = this.props.active.ingredientsArr.map((ing, i) => {
-                return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing}</p>
+                return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing.amount}{ing.unit} of {ing.title}</p>
             })
-        return <div className={"recipe col s12"} key={this.props.active.id}>
+        return <div className={"recipe-container col s12"} key={this.props.active.id}>
             <div className="recipe__row--main">
                 <NavLink to={"/recipes"} className={"menu__link"}
                     className={"waves-effect waves-light btn"}>back</NavLink>
@@ -72,9 +73,9 @@ class ShowRecipe extends Component {
                 </div>
             </div>
             <div className="recipe__row">
-                <ul className={"recipe__steps-list"}>
+                <div className={"recipe-steps-list"}>
                     {step}
-                </ul>
+                </div>
             </div>
             <div className="recipe__row recipe__row-edit">
                 <a className={"recipe__delete waves-effect waves-light btn"}

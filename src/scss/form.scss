@@ -10,9 +10,14 @@
 }
 
 .recipe-form{
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   background: rgba(white, 0.7);
+}
+
+.recipe-form-label{
+  position: absolute;
+  top: -0.7rem;
 }
 
 
@@ -20,6 +25,11 @@
   margin: 0;
   font-size: 1.2em;
   color: $main-color;
+}
+
+.form-button{
+  height: 100%;
+  padding: 15px 0 !important;
 }
 
 .form__input {
@@ -43,10 +53,13 @@
 
 .form__checkboxes {
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   padding: 0.5em 0;
   p{
     margin: 1em;
+  }
+  @media #{$large} {
+    flex-direction: row;
   }
 }
 

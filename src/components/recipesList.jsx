@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "underscore";
 import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay } from "../js/actions/index";
+import Filters from "./filters.jsx";
 
 import {
     HashRouter,
@@ -56,7 +57,7 @@ class RecipesList extends Component {
                     return <div className="recipe__category" style={{ backgroundColor: "tomato" }}>{cat}</div>
                 }
             })
-                    return <div className={"recipe col s3"} key={"recipe" + i}>
+                    return <div className={"recipe-mini-container col s3"} key={"recipe" + i}>
                         <div className="recipe__row--main">
                             <NavLink to={"/recipes/:" + el.id} className={"menu__link"}
                                 className={"waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>show</NavLink>
@@ -67,7 +68,9 @@ class RecipesList extends Component {
                             className="recipe__img" />
                     </div>
         });
-        return <div className="row">{recipes}</div>
+        return <div className="row">
+        {recipes}
+        </div>
     }
 }
 

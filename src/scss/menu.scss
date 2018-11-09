@@ -1,9 +1,13 @@
 .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     background: $second-color;
     list-style-type: none;
-    display: flex;
-    justify-content: space-around;
     padding: 20px 0;
+    @media #{$mid} {
+        flex-direction: row;
+    }
 }
 
 .menu__link {
@@ -11,7 +15,14 @@
     color: white;
     font-weight: 700;
     font-size: 1.5rem;
-    padding: 10px 20px;
+    padding: 20px 10px;
+
+    @media #{$mid} {
+        padding: 10px;
+    }
+    @media #{$large} {
+        padding: 10px 20px;
+    }
     &:hover{
         color: $main-color;
         text-decoration: none;

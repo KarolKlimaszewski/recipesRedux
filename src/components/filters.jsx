@@ -4,11 +4,12 @@ import { toggleFilters, launchFilters, clearFilters } from "../js/actions/index"
 import { checkboxes } from "../js/checkboxes";
 import _ from "underscore";
 import Select from "react-select";
+import { ingredients_DATABASE_forSelect} from "../js/ingredients";
 
 const mapStateToProps = state => {
     return { displayFilters: state.displayFilters,
              recipes: state.recipes,
-             categoryFilter: state.categoryFilter };
+        filters: state.filters };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -65,10 +66,17 @@ export class Filter extends Component {
                 if (el.category.includes(this.state.category)){
                     recipesFiltered.push(el);
                 }
-            }else if(this.state.title) {
+            } else if(this.state.title) {
                 if(el.title.includes(this.state.title.value)) {
                     recipesFiltered.push(el);
                 }
+            } else if (this.state.ingredients) {
+                el.ingredientsArr.map(ing => {
+                    console.log(ing);
+                    if(ing.title.includes(this.state.ingredients.value)){
+                        recipesFiltered.push(el);
+                    }
+                })
             }
              else {
                 return el
@@ -80,7 +88,8 @@ export class Filter extends Component {
         this.props.launchFilters(recipesFiltered);
             this.setState({
                 category: [],
-                title: ""
+                title: "",
+                ingredients: "",
             })
         this.props.toggleFilters(false);
     }
@@ -120,8 +129,11 @@ export class Filter extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s5">
+                    <div className="col s6">
                         <Select placeholder={"Title..."} options={selectTitles} value={this.state.title} onChange={this.handleTitleChange} />
+                    </div>
+                    <div className="col s6">
+                        <Select placeholder={"Ingredients..."} options={ingredients_DATABASE_forSelect} value={this.state.ingredients} onChange={this.handleIngredientsChange} />
                     </div>
                 </div>
                 <button className="filter__run btn waves-effect waves-light" onClick={this.handleLaunchFilters}>Launch filters</button>

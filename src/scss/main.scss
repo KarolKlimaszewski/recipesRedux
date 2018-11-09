@@ -4,8 +4,8 @@ $second-color: #C8915B;
 $additional-color: #4BC379;
 
 //SCREEN SIZES
-$small: "screen and (min-width: 576px)";
-$mid: "screen and (min-width: 768px)";
+// $small: "screen and (min-width: 576px)";
+$mid: "screen and (min-width: 600px)";
 $large: "screen and (min-width: 992px)";
 $xlarge: "screen and (min-width: 1200px)";
 
@@ -17,9 +17,11 @@ $xlarge: "screen and (min-width: 1200px)";
 @import 'menu.scss';
 @import 'header.scss';
 // @import 'loader.scss';
-@import 'recipeForm.scss';
-@import 'recipe.scss';
+@import 'form.scss';
+@import 'recipeDisplay.scss';
+@import 'recipesList.scss';
 @import 'filter';
+@import 'recipeSteps.scss';
 
 
 *{

@@ -1,6 +1,5 @@
-import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_RECIPE, ACTIVE_RECIPE_DISPLAY, TOGGLE_FILTERS, LAUNCH_FILTERS, CLEAR_FILTERS } from "../constants/action-types";
+import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, ACTIVE_RECIPE_DISPLAY, TOGGLE_FILTERS, LAUNCH_FILTERS, CLEAR_FILTERS } from "../constants/action-types";
 import {RECIPES} from "../../js/RECIPES";
-console.log(RECIPES);
 const initialState = {
   articles: [],
   recipes: RECIPES,
@@ -26,10 +25,6 @@ const rootReducer = (state = initialState, action) => {
     case DELETE_RECIPE:
       return Object.assign({}, state, {
         recipes: [...state.recipes.slice(0, action.payload), ...state.recipes.slice(action.payload + 1)]
-      });
-    case TOGGLE_RECIPE:
-      return Object.assign({}, state, {
-        displayRecipe: action.payload
       });
     case ACTIVE_RECIPE_DISPLAY:
       return Object.assign({}, state, {

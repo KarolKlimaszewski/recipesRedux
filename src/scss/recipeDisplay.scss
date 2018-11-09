@@ -1,10 +1,7 @@
-.recipe{
+.recipe-container{
   background: rgba(black,0.6);
   margin: 10px 0;
-  min-height: 250px !important;
-  &:nth-child(2n) {
-    background: rgba(black, 0.4);
-  }
+  min-height: 300px !important;
 }
 
 .recipe__row{
@@ -42,11 +39,13 @@
   border-radius: 10px;
   &:hover{
     opacity: 1;
+    cursor: default;
   }
 }
 
 .recipe__title{
   margin: 0.5em 0;
+  min-height: 50px;
   color: white;
   font-weight: 700;
 }

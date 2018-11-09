@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { showForm, submitRecipe } from "../js/actions/index";
 import {checkboxes} from "../js/checkboxes";
 import Select from "react-select";
-import { ingredients_DATABASE, ingredients_DATABASE_forSelect} from "../js/ingredients";
+import { ingredients_DATABASE_forSelect, units_DATABASE_forSelect} from "../js/ingredients";
 
 import uuidv1 from "uuid";
 
@@ -23,7 +23,9 @@ class RecipeForm extends Component {
         super();
         this.state = {
             title: "",
-            ingredients: "",
+            ingredientsTitle: "",
+            ingredientsAmount: "",
+            ingredientsUnit: "",
             ingredientsArr: [],
             photo: "",
             recipeSteps: "",
@@ -33,7 +35,9 @@ class RecipeForm extends Component {
         this.handleFormDisplay = this.handleFormDisplay.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-        this.handleIngredientsChange = this.handleIngredientsChange.bind(this);
+        this.handleIngredientsTitleChange = this.handleIngredientsTitleChange.bind(this);
+        this.handleIngredientsAmountChange = this.handleIngredientsAmountChange.bind(this);
+        this.handleIngredientsUnitChange = this.handleIngredientsUnitChange.bind(this);
         this.handleAddIngredient = this.handleAddIngredient.bind(this);
         this.handleDeleteIngredient = this.handleDeleteIngredient.bind(this);
         this.handlePhotoUrlChange = this.handlePhotoUrlChange.bind(this);
@@ -69,19 +73,39 @@ class RecipeForm extends Component {
         }
     }
 
-    handleIngredientsChange(event) {
+    handleIngredientsTitleChange(event) {
         this.setState({
-            ingredients: event
+            ingredientsTitle: event
+        })
+    }
+    
+    handleIngredientsAmountChange(event) {
+        this.setState({
+            ingredientsAmount: event.target.value
+        })
+    }
+
+    handleIngredientsUnitChange(event) {
+        this.setState({
+            ingredientsUnit: event
         })
     }
 
     handleAddIngredient(event) {
         event.preventDefault();
-        if(!this.state.ingredientsArr.includes(this.state.ingredients.value)) {   
-        this.state.ingredientsArr.push(this.state.ingredients.value);
+        if (this.state.ingredientsTitle && this.state.ingredientsAmount){
         this.setState({
-            ingredients: ""
+            ingredientsArr: [...this.state.ingredientsArr, {
+                title: this.state.ingredientsTitle.value,
+                amount: this.state.ingredientsAmount,
+                unit: this.state.ingredientsUnit.value
+            }],
+            ingredientsTitle: "",
+            ingredientsAmount: "",
+            ingredientsUnit: ""
         })
+    }else{
+        console.log("fill fields")
     }
     }
 
@@ -151,10 +175,9 @@ class RecipeForm extends Component {
         }
     }
     render() {
-        console.log(this.state.ingredientsArr);
         let ingredients = this.state.ingredientsArr.map((el, i) => {
             return <div key={i} className="ingredients-item">
-            {el}
+            {el.amount}{el.unit}s of {el.title}
                 <button className="ingredients-item__delete" onClick={e => this.handleDeleteIngredient(e, el)}>X</button>
             </div>
         })
@@ -162,6 +185,7 @@ class RecipeForm extends Component {
             return <div key={i} className="ingredients-item">
             {el}
                 <button className="recipeStep-item__delete" onClick={e => this.handleDeleteRecipeStep(e, el)}>X</button>
+                <button className="recipeStep-item__delete" >edit</button>
             </div>
         })
         let checkbox = checkboxes.map((el, i) => {
@@ -175,49 +199,50 @@ class RecipeForm extends Component {
         // if(this.props.displayForm) {
         return <div className="recipe-form">
             {/* <a className="recipe__add waves-effect waves-light btn" onClick={this.handleFormDisplay}>+ Add recipe</a> */}
-            <div className="row">
-            <form className="form col s12">
-                <div className="input-field col s6">
-                    <input id="title" value={this.state.title}
-                        onChange={this.handleTitleChange} />
-                    <label htmlFor="title" className="active">Your recipe title:</label>
-                </div>
-                <div className="input-field col s6">
-                    <input id="photo" value={this.state.photo}
-                        onChange={this.handlePhotoUrlChange} />
-                    <label htmlFor="photo" className="active">Photo Url:</label>
-                </div>
-                {/* <div className="input-field col s6">
-                    <input id="ingredients" value={this.state.ingredients}
-                        onChange={this.handleIngredientsChange} />
-                    <label htmlFor="ingredients" className="active">Ingredients:</label>
-                    <div className="ingredients">{ingredients}</div>
-                    <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddIngredient}>Add ingredient</button>
-                </div> */}
-                    <div className="col s6">
-                        <Select placeholder={"Choose ingredient..."} options={ingredients_DATABASE_forSelect}
-                         value={this.state.ingredients} onChange={this.handleIngredientsChange} />
-                        <div className="ingredients">{ingredients}</div>
-                        <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddIngredient}>Add ingredient</button>
+                <form className="form">
+                    <div className="row">
+                        <div className="input-field col s12 m12 l6">
+                            <p className="recipe-form-label">Your recipe title:</p>
+                            <input value={this.state.title} onChange={this.handleTitleChange} />
+                        </div>
+                        <div className="input-field col s12 m12 l6">
+                            <p className="recipe-form-label">Photo url:</p>
+                            <input value={this.state.photo} onChange={this.handlePhotoUrlChange} />
+                        </div>
                     </div>
-                <div className="input-field col s6">
-                    <input id="recipeSteps" value={this.state.recipeSteps}
-                        onChange={this.handleRecipeStepsChange} />
-                    <label htmlFor="recipeSteps" className="active">Recipe steps:</label>
-                    <div className="ingredients">{recipeSteps}</div>
-                    <button className="ingredients__add waves-effect waves-light btn" onClick={this.handleAddRecipeStep}>Add recipe step</button>
-                </div>
-                <p className="form__description col s12">
-                    Category:
-                    </p>
-                <div className="form__checkboxes col s12">
-                    {checkbox}
-                </div>
-                <button type={"submit"} className={"form__submit btn waves-effect waves-light col s12"} onClick={this.handleSubmit}>
-                <i className="material-icons">Submit</i>
+                    <div className="row">
+                        <p className="form__description col s12">Ingredients:</p>
+                        <Select className="col s12 m12 l6 xl4" placeholder={"Choose ingredient..."} options={ingredients_DATABASE_forSelect}
+                                value={this.state.ingredientsTitle} onChange={this.handleIngredientsTitleChange} />
+                        <div className="input-field col s12 m12 l6 xl2">
+                            <p className="recipe-form-label">Amount:</p>
+                            <input value={this.state.ingredientsAmount} onChange={this.handleIngredientsAmountChange} />
+                        </div>
+                        <Select className="col s12 m12 l6 xl4" placeholder={"Choose unit..."} options={units_DATABASE_forSelect}
+                            value={this.state.ingredientsUnit} onChange={this.handleIngredientsUnitChange} />
+                        <button className="form-button waves-effect waves-light btn col s12 m12 l6 xl2" 
+                        onClick={this.handleAddIngredient}>Add ingredient</button>
+                        <div className="ingredients col s12">{ingredients}</div>
+                    </div>
+                    <div className="row">
+                        {/* <p className="form__description col s12">Recipe steps:</p> */}
+                        <div className="input-field col s12 m12 l6 xl7">
+                            <p className="recipe-form-label">Recipe step:</p>
+                            <input value={this.state.recipeSteps} onChange={this.handleRecipeStepsChange} />
+                        </div>
+                    <button className="form-button waves-effect waves-light btn col s12 m12 l6 xl5" onClick={this.handleAddRecipeStep}>Add recipe step</button>
+                        <div className="ingredients col s12">{recipeSteps}</div>
+                    </div>
+                    <div className="row">
+                        <p className="form__description col s12">
+                        Category:
+                        </p>
+                        <div className="form__checkboxes col s12">{checkbox}</div>
+                    </div>
+                    <button type={"submit"} className={"form__submit btn waves-effect waves-light col s12"} onClick={this.handleSubmit}>
+                        <i className="material-icons">Submit</i>
                     </button>
                 </form>
-            </div>
         </div>
     // }else{
     //         return <div className="recipe-form">
