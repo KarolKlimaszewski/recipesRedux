@@ -5,7 +5,6 @@ import Recipes from "./recipesList.jsx";
 import Filters from "./filters.jsx";
 import DisplayRecipe from "./recipeDisplay.jsx";
 import WelcomeComponent from "./welcome.jsx";
-import Footer from "./footer.jsx";
 import {
     HashRouter,
     Route,

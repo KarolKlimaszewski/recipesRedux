@@ -35,13 +35,11 @@ class RecipeHead extends Component {
     }
 
     handleDeleteRecipe(event, el) {
-        console.log(el);
         this.props.deleteRecipe(this.props.recipes.indexOf(el));
     }
 
     render() {
         let recipesLength = this.props.recipes.length;
-        console.log(recipesLength);
                 return <div className="recipe__row--main">
                         <div className="recipe__show" onClick={e => this.handleShowRecipe(e, el)}>hide</div>
                         {/* <div className="recipe__categories">{categories}</div> */}

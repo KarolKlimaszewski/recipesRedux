@@ -26,20 +26,8 @@ const mapDispatchToProps = dispatch => {
 class ShowRecipe extends Component {
     constructor(props) {
         super(props);
-
-        this.handleShowRecipe = this.handleShowRecipe.bind(this);
+        
         this.handleDeleteRecipe = this.handleDeleteRecipe.bind(this);
-    }
-
-    handleShowRecipe(e, el) {
-        event.preventDefault();
-        if (this.props.activeID === el.id) {
-            this.props.showRecipe(false)
-            this.props.activeRecipe(-1)
-        } else {
-            this.props.activeRecipe(el.id);
-            this.props.showRecipe(true)
-        }
     }
 
     handleDeleteRecipe(event, el) {
@@ -50,7 +38,6 @@ class ShowRecipe extends Component {
             let step = this.props.active.recipeStepsArr.map((step, i) => {
                 return <p key={"recipeStep" + i} className="recipe-steps-list__item">{step}</p>
             })
-            console.log(this.props.active)
             let ing = this.props.active.ingredientsArr.map((ing, i) => {
                 return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing.amount}{ing.unit} of {ing.title}</p>
             })
