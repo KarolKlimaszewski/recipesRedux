@@ -8,10 +8,8 @@ import {NavLink} from 'react-router-dom';
 const mapStateToProps = state => {
     return {
         recipes: state.recipes,
-        displayRecipe: state.displayRecipe,
-        activeID: state.activeID,
-        active: state.active,
-        filters: state.filters
+        activeID: state.main.activeID,
+        active: state.main.active,
     };
 };
 
@@ -31,7 +29,8 @@ class ShowRecipe extends Component {
     }
 
     handleDeleteRecipe(event, el) {
-        this.props.deleteRecipe(this.props.recipes.indexOf(el));
+        this.props.deleteRecipe(el);
+        // alert('deleted successfully!');
     }
 
     render() {

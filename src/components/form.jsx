@@ -8,7 +8,8 @@ import { ingredients_DATABASE_forSelect, units_DATABASE_forSelect} from "../js/i
 import uuidv1 from "uuid";
 
 const mapStateToProps = state => {
-    return {displayForm: state.displayForm};  
+    return {displayForm: state.main.displayForm};
+
 };
 
 const mapDispatchToProps = dispatch => {

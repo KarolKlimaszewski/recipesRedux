@@ -16,7 +16,7 @@ $xlarge: "screen and (min-width: 1200px)";
 //PARTIALS:
 @import 'menu.scss';
 @import 'header.scss';
-// @import 'loader.scss';
+@import 'loader.scss';
 @import 'form.scss';
 @import 'recipeDisplay.scss';
 @import 'recipesList.scss';

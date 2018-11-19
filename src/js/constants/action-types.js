@@ -1,7 +1,9 @@
 export const SUBMIT_FORM = "SUBMIT_FORM";
 export const TOGGLE_FORM = "TOGGLE_FORM";
 
+export const FETCH_RECIPES = "FETCH_RECIPES";
 export const DELETE_RECIPE = "DELETE_RECIPE";
+
 export const ACTIVE_RECIPE_DISPLAY = "ACTIVE_RECIPE_DISPLAY";
 
 export const TOGGLE_FILTERS = "TOGGLE_FILTERS";

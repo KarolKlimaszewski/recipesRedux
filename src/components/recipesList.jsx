@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "underscore";
-import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay } from "../js/actions/index";
+import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay, fetchRecipes } from "../js/actions/index";
 import Filters from "./filters.jsx";
 import Footer from "./footer.jsx";
+import Loader from "./loader.jsx";
 
 import {
     HashRouter,
@@ -15,15 +16,16 @@ import {
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipes,
-        active: state.active,
-        filters: state.filters
+        recipes: state.main.recipes,
+        filters: state.main.filters,
+        data: state.data
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active))
+        activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active)),
+        fetchRecipes: recipes => dispatch(fetchRecipes(recipes))
     };
 };
 
@@ -34,50 +36,60 @@ class RecipesList extends Component {
         this.handleShowRecipe = this.handleShowRecipe.bind(this);
     }
 
+    componentWillMount() {
+        this.props.fetchRecipes(this.props.data)
+    }
+
     handleShowRecipe(e, el) {
         event.preventDefault();
         this.props.activeRecipeDisplay(el);
     }
 
     render() {
-        let filtered = this.props.recipes;
+        const data = this.props.data;
+        let filtered = _.values(data, el => el);
         if(this.props.filters.length > 0) {
             filtered = this.props.filters
         }
         let recipes = filtered.map((el, i) => {
             let categories = el.category.map(cat => {
                 if (cat === "snack") {
-                    return <div className="recipe-mini__category recipe-mini__category--snack"></div>
+                    return <div key={'snack_' +i} className="recipe-mini__category recipe-mini__category--snack"></div>
                 } else if (cat === "breakfast") {
-                    return <div className="recipe-mini__category recipe-mini__category--breakfast"></div>
+                    return <div key={'breakfast_' +i} className="recipe-mini__category recipe-mini__category--breakfast"></div>
                 } else if (cat === "dinner") {
-                    return <div className="recipe-mini__category recipe-mini__category--dinner"></div>
+                    return <div key={'dinner_' +i} className="recipe-mini__category recipe-mini__category--dinner"></div>
                 } else if (cat === "dessert") {
-                    return <div className="recipe-mini__category recipe-mini__category--dessert"></div>
-                } else if(cat === "drink") {
-                    return <div className="recipe-mini__category recipe-mini__category--drink"></div>
+                    return <div key={'dessert_' +i} className="recipe-mini__category recipe-mini__category--dessert"></div>
+                } else if (cat === "drink") {
+                    return <div key={'drink_' +i} className="recipe-mini__category recipe-mini__category--drink"></div>
                 }
             })
-                    return <div className={"recipe-mini-container col s12 m6 l4 xl3"} key={"recipe" + i}>
-                        <div className="recipe__row--main">
-                            <NavLink to={"/recipes/:" + el.id}
-                                className={"filter-btn waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>show</NavLink>
-                            <div className="recipe-mini__category-container">{categories}</div>
-                        </div>
-                        <div className="recipe-mini__title-container">
-                        <h6 className="recipe-mini__title">{el.title}</h6>
-                        </div>
-                        <img src={el.photo} alt="See this? Please try to update photo address (url)."
-                            className="recipe__img" />
-                    </div>
+            return <div className={"recipe-mini-container col s12 m6 l4 xl3"} key={"recipe_" + i}>
+                <div className="recipe__row--main">
+                    <NavLink to={"/recipes/:" + el.id} className={"filter-btn waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>
+                        show
+                        </NavLink>
+                    <div className="recipe-mini__category-container">{categories}</div>
+                </div>
+                <div className="recipe-mini__title-container">
+                    <h6 className="recipe-mini__title">{el.title}</h6>
+                </div>
+                <img src={el.photo} alt="See this? Please try to update photo address (url)."
+                    className="recipe__img" />
+            </div>
         });
-        return <div><div className="row">
-        {recipes}
+        if(this.props.data !== 'loading') {
+        return <div>
+            <div className="row">
+                {recipes}
+            </div>
+            <Footer />
         </div>
-        <Footer />
-        </div>
+        }
+            return <Loader />
+        }
     }
-}
 
 
 const Recipes = connect(mapStateToProps, mapDispatchToProps)(RecipesList);
