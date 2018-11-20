@@ -6948,16 +6948,32 @@ input[type=range]::-ms-thumb {
     background: white; }
 
 .recipe-mini-container {
-  background: #37a461;
   margin: 10px 0;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  max-height: 400px !important;
-  min-height: 370px !important; }
+  background: #37a461; }
   .recipe-mini-container:nth-child(2n) {
     background: #2a7e4a; }
+  @media screen and (min-width: 600px) {
+    .recipe-mini-container {
+      max-height: 400px !important;
+      min-height: 370px !important; }
+      .recipe-mini-container:nth-child(n) {
+        background: #37a461; }
+      .recipe-mini-container:nth-child(4n + 2), .recipe-mini-container:nth-child(4n + 3) {
+        background: #2a7e4a; } }
+  @media screen and (min-width: 992px) {
+    .recipe-mini-container:nth-child(n) {
+      background: #37a461; }
+    .recipe-mini-container:nth-child(2n) {
+      background: #2a7e4a; } }
+  @media screen and (min-width: 1200px) {
+    .recipe-mini-container:nth-child(n) {
+      background: #37a461; }
+    .recipe-mini-container:nth-child(8n + 2), .recipe-mini-container:nth-child(8n + 4), .recipe-mini-container:nth-child(8n + 5), .recipe-mini-container:nth-child(8n + 7) {
+      background: #2a7e4a; } }
 
 .recipe-mini__title {
   min-height: 60px;

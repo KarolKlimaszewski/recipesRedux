@@ -22,8 +22,8 @@ export default class App extends React.Component {
           <Header />
           <Menu />
             <Switch>
-              {/* <Route exact path='/' component={Login} /> */}
-              {/* <Route exact path='/dashboard' component={requireAuth(Dashboard)} /> */}
+              <Route exact path='/' component={Login} />
+              <Route exact path='/dashboard' component={requireAuth(Dashboard)} />
               <Route path='/filters' component={Filters} />
               <Route exact path='/recipes' component={Recipes} />
               <Route path='/recipes/:id' component={DisplayRecipe} />

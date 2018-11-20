@@ -1,32 +1,51 @@
-.recipe-mini-container{
-        background: darken($additional-color, 10%);
-        margin: 10px 0;
-        // padding-bottom: 15px;
-        display: flex;
-        flex-direction: column;
+.recipe-mini-container {
+    margin: 10px 0;
+    // padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    background: darken($additional-color, 10%);
+    &:nth-child(2n) {
+        background: darken($additional-color, 20%);
+    }
+    @media #{$mid} {
         max-height: 400px !important;
         min-height: 370px !important;
-        // height: 100%;
-        @media #{$mid} {
-            // min-height: 400px;
+        &:nth-child(n) {
+            background: darken($additional-color, 10%);
         }
-
-
+        &:nth-child(4n + 2), &:nth-child(4n + 3) {
+            background: darken($additional-color, 20%);
+        }
+    }
+    @media #{$large} {
+        &:nth-child(n) {
+            background: darken($additional-color, 10%);
+        }
         &:nth-child(2n) {
             background: darken($additional-color, 20%);
         }
+    }
+    @media #{$xlarge} {
+        &:nth-child(n){
+            background: darken($additional-color, 10%);
+        }
+        &:nth-child(8n + 2), &:nth-child(8n + 4),  &:nth-child(8n + 5),  &:nth-child(8n + 7) {
+            background: darken($additional-color, 20%);
+        }
+    }
+
 }
 
-.recipe-mini__title{
-        min-height: 60px;
-        margin-top: 0.5em;
-        color: white;
-        font-weight: 700;
-        text-align: center;
+.recipe-mini__title {
+    min-height: 60px;
+    margin-top: 0.5em;
+    color: white;
+    font-weight: 700;
+    text-align: center;
 
-        @media #{$xlarge} {
-            // min-height: 100px;
-        }
+    @media #{$xlarge} {
+        // min-height: 100px;
+    }
 }
 
 .recipe-mini__category-container {
@@ -45,23 +64,28 @@
     color: $main-color;
     border-radius: 10px;
     background-size: cover;
+
     &:not(:first-child) {
         margin-left: 10px;
     }
 
-    &--snack{
+    &--snack {
         background-image: url("../../images/icons/fries.png");
     }
-    &--breakfast{
+
+    &--breakfast {
         background-image: url("../../images/icons/sandwich.png");
     }
-    &--dinner{
+
+    &--dinner {
         background-image: url("../../images/icons/turkey.png");
     }
-    &--dessert{
+
+    &--dessert {
         background-image: url("../../images/icons/cupcake.png");
     }
-    &--drink{
+
+    &--drink {
         background-image: url("../../images/icons/glass.png");
     }
 
@@ -71,7 +95,7 @@
     }
 }
 
-.recipe-mini__img-container{
+.recipe-mini__img-container {
     width: 100%;
     display: flex;
     align-items: center;
@@ -79,7 +103,7 @@
     padding-bottom: 15px;
 }
 
-.recipe-mini__img{
+.recipe-mini__img {
     width: 100%;
     max-width: 350px;
 
