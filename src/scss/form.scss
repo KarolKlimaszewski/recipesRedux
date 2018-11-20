@@ -10,7 +10,7 @@
 }
 
 .recipe-form{
-  background: mix($main-color, $second-color);
+  background: darken($additional-color, 20%);
 }
 
 .recipe-form-label{

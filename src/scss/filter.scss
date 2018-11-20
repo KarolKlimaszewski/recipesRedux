@@ -1,12 +1,11 @@
 .filter{
   // display: flex;
   // flex-direction: column;
-  margin-top: 1em;
-  background: $main-color;
+  background: darken($additional-color, 20%);
 }
 
 .filter__title{
-  color: $main-color;
+  color: white;
 }
 
 .filter-btn{
@@ -20,11 +19,14 @@
 }
 
 .filter__checkboxes{
-  background: white;
+  // background: white;
   display: flex;
   flex-direction: column;
   padding: 1em 0;
   // margin-left: 0.5em;
+  span{
+    color: white;
+  }
 }
 
 .filter__checkbox-container{

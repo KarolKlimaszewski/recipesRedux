@@ -5,6 +5,7 @@
     background: $main-color;
     list-style-type: none;
     padding: 20px 0;
+    margin-bottom: 20px;
     @media #{$mid} {
         flex-direction: row;
     }

@@ -129,9 +129,9 @@ export class Filter extends Component {
             return <div className={"filter"}>
                 <button className="filter-btn btn waves-effect waves-light" onClick={this.handleShowSorting}>Hide filters</button>
                 <div className="row">
-                    <h5 className="filter__title">
+                    <p className="filter__title">
                         Category:
-                    </h5>
+                    </p>
                     <div className="filter__checkboxes col s12">
                         {checkbox}
                     </div>

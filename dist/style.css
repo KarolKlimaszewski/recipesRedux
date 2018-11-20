@@ -6506,7 +6506,8 @@ input[type=range]::-ms-thumb {
       justify-content: space-around;
   background: #361712;
   list-style-type: none;
-  padding: 20px 0; }
+  padding: 20px 0;
+  margin-bottom: 20px; }
   @media screen and (min-width: 600px) {
     .menu {
       -ms-flex-direction: row;
@@ -6779,7 +6780,7 @@ input[type=range]::-ms-thumb {
   border-radius: 20px; }
 
 .recipe-form {
-  background: #7f5437; }
+  background: #2a7e4a; }
 
 .recipe-form-label {
   position: absolute;
@@ -6948,7 +6949,7 @@ input[type=range]::-ms-thumb {
     background: white; }
 
 .recipe-mini-container {
-  margin: 10px 0;
+  margin-bottom: 20px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -7035,11 +7036,10 @@ input[type=range]::-ms-thumb {
       max-height: 150px; } }
 
 .filter {
-  margin-top: 1em;
-  background: #361712; }
+  background: #2a7e4a; }
 
 .filter__title {
-  color: #361712; }
+  color: white; }
 
 .filter-btn {
   background: #C8915B;
@@ -7050,12 +7050,13 @@ input[type=range]::-ms-thumb {
     background: #b4773c; }
 
 .filter__checkboxes {
-  background: white;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
   padding: 1em 0; }
+  .filter__checkboxes span {
+    color: white; }
 
 .filter__checkbox-container {
   margin: 0.3em 0; }
