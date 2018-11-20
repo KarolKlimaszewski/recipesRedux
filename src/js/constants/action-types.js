@@ -1,3 +1,7 @@
+export const FETCH_USER = "FETCH_USER";
+
+export const SIGN_IN = "SIGN_IN";
+
 export const SUBMIT_FORM = "SUBMIT_FORM";
 export const TOGGLE_FORM = "TOGGLE_FORM";
 

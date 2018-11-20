@@ -2,7 +2,7 @@
   // display: flex;
   // flex-direction: column;
   margin-top: 1em;
-  background: rgba($second-color, 0.5);
+  background: $main-color;
 }
 
 .filter__title{
@@ -10,10 +10,13 @@
 }
 
 .filter-btn{
-    background: $additional-color;
+    background: $second-color;
     border: none;
     color: white;
     margin-right: 10px;
+    &:hover{
+      background: darken($second-color, 10%);
+    }
 }
 
 .filter__checkboxes{

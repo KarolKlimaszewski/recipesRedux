@@ -34,6 +34,7 @@ class RecipesList extends Component {
         super(props);
 
         this.handleShowRecipe = this.handleShowRecipe.bind(this);
+        this.onImgError = this.onImgError.bind(this);
     }
 
     componentWillMount() {
@@ -43,6 +44,10 @@ class RecipesList extends Component {
     handleShowRecipe(e, el) {
         event.preventDefault();
         this.props.activeRecipeDisplay(el);
+    }
+    onImgError(event) {
+        event.target.setAttribute('src', 
+        require("../../images/noimage.png"))
     }
 
     render() {
@@ -66,17 +71,17 @@ class RecipesList extends Component {
                 }
             })
             return <div className={"recipe-mini-container col s12 m6 l4 xl3"} key={"recipe_" + i}>
-                <div className="recipe__row--main">
+                <div className="recipe-mini-header">
                     <NavLink to={"/recipes/:" + el.id} className={"filter-btn waves-effect waves-light btn"} onClick={e => this.handleShowRecipe(e, el)}>
                         show
                         </NavLink>
                     <div className="recipe-mini__category-container">{categories}</div>
                 </div>
-                <div className="recipe-mini__title-container">
                     <h6 className="recipe-mini__title">{el.title}</h6>
-                </div>
-                <img src={el.photo} alt="See this? Please try to update photo address (url)."
-                    className="recipe__img" />
+                    <div className="recipe-mini__img-container">
+                    <img src={el.photo} alt={el.title} className="recipe-mini__img" 
+                    onError={this.onImgError} />
+                    </div>
             </div>
         });
         if(this.props.data !== 'loading') {

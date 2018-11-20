@@ -1,50 +1,56 @@
 .recipe-mini-container{
-        background: rgba(black, 0.6);
+        background: darken($additional-color, 10%);
         margin: 10px 0;
+        // padding-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        max-height: 400px !important;
+        min-height: 370px !important;
+        // height: 100%;
         @media #{$mid} {
-            min-height: 400px;
+            // min-height: 400px;
         }
 
 
         &:nth-child(2n) {
-            background: rgba(black, 0.4);
+            background: darken($additional-color, 20%);
         }
 }
-.recipe-mini__title-container{
-    display: flex;
-    align-items: flex-end;
-    min-height: 80px;
 
-    @media #{$xlarge} {
-        min-height: 100px;
-    }
-    .recipe-mini__title {
-        margin: 0.5em 0;
+.recipe-mini__title{
+        min-height: 60px;
+        margin-top: 0.5em;
         color: white;
         font-weight: 700;
-    }
+        text-align: center;
+
+        @media #{$xlarge} {
+            // min-height: 100px;
+        }
 }
 
 .recipe-mini__category-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
     position: relative;
 }
 
 .recipe-mini__category {
     opacity: 0.7;
-    margin-left: 10px;
     height: 32px;
     width: 32px;
     transition: 0.5s;
     color: $main-color;
     border-radius: 10px;
     background-size: cover;
+    &:not(:first-child) {
+        margin-left: 10px;
+    }
 
     &--snack{
         background-image: url("../../images/icons/fries.png");
-
     }
     &--breakfast{
         background-image: url("../../images/icons/sandwich.png");
@@ -62,5 +68,23 @@
     &:hover {
         opacity: 1;
         cursor: default;
+    }
+}
+
+.recipe-mini__img-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.recipe-mini__img{
+    width: 100%;
+    max-width: 350px;
+
+    @media #{$mid} {
+        max-width: 250px;
+        max-height: 150px;
     }
 }

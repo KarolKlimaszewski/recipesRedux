@@ -15,9 +15,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
+        // showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
         deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
-        activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active))
+        // activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active))
     };
 };
 
@@ -30,7 +30,6 @@ class ShowRecipe extends Component {
 
     handleDeleteRecipe(event, el) {
         this.props.deleteRecipe(el);
-        // alert('deleted successfully!');
     }
 
     render() {

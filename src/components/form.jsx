@@ -27,7 +27,16 @@ class RecipeForm extends Component {
             ingredientsTitle: "",
             ingredientsAmount: "",
             ingredientsUnit: "",
-            ingredientsArr: [],
+            ingredientsArr: [{
+                amount: 200,
+                title: "milk",
+                unit: "ml"
+            },
+        {
+            amount: 200,
+            title: "ingredientwithatleast20digits",
+            unit: "ml"
+        }],
             photo: "",
             recipeSteps: "",
             recipeStepsArr: [],
@@ -177,23 +186,23 @@ class RecipeForm extends Component {
     }
     render() {
         let ingredients = this.state.ingredientsArr.map((el, i) => {
-            return <div key={i} className="ingredients-item">
+            return <div key={i} className="form-ingredients__list-item">
             {el.amount}{el.unit}s of {el.title}
-                <button className="ingredients-item__delete" onClick={e => this.handleDeleteIngredient(e, el)}>X</button>
+                <button className="recipe-btn waves-effect waves-light btn form-ingredients__list-button" onClick={e => this.handleDeleteIngredient(e, el)}>X</button>
             </div>
         })
         let recipeSteps = this.state.recipeStepsArr.map((el, i) => {
             return <div key={i} className="ingredients-item">
             {el}
-                <button className="recipeStep-item__delete" onClick={e => this.handleDeleteRecipeStep(e, el)}>X</button>
-                <button className="recipeStep-item__delete" >edit</button>
+                <button className="recipe-btn form-button waves-effect waves-light btn form-ingredients__list-button" onClick={e => this.handleDeleteRecipeStep(e, el)}>X</button>
+                <button className="recipe-btn form-button waves-effect waves-light btn form-ingredients__list-button form-ingredients__list-button--edit" >edit</button>
             </div>
         })
         let checkbox = checkboxes.map((el, i) => {
             return <p key={i}>
                 <label>
                     <input type="checkbox" className="filled-in" onChange={this.handleCheckboxChange} value={el.value} />
-                    <span>{el.name}</span>
+                    <span className="form-checkbox-label">{el.name}</span>
                 </label>
             </p>
         })
@@ -221,9 +230,9 @@ class RecipeForm extends Component {
                         </div>
                         <Select className="col s12 m12 l6 xl4" placeholder={"Choose unit..."} options={units_DATABASE_forSelect}
                             value={this.state.ingredientsUnit} onChange={this.handleIngredientsUnitChange} />
-                        <button className="form-button waves-effect waves-light btn col s12 m12 l6 xl2" 
+                        <button className=" recipe-btn recipe-btn__nomg waves-effect waves-light btn-large col s12 m12 l6 xl2" 
                         onClick={this.handleAddIngredient}>Add ingredient</button>
-                        <div className="ingredients col s12">{ingredients}</div>
+                        <div className="form-ingredients__list col s12">{ingredients}</div>
                     </div>
                     <div className="row">
                         {/* <p className="form__description col s12">Recipe steps:</p> */}
@@ -231,7 +240,7 @@ class RecipeForm extends Component {
                             <p className="recipe-form-label">Recipe step:</p>
                             <input value={this.state.recipeSteps} onChange={this.handleRecipeStepsChange} />
                         </div>
-                    <button className="form-button waves-effect waves-light btn col s12 m12 l6 xl5" onClick={this.handleAddRecipeStep}>Add recipe step</button>
+                    <button className="recipe-btn recipe-btn__nomg waves-effect waves-light btn col s12 m12 l6 xl5" onClick={this.handleAddRecipeStep}>Add recipe step</button>
                         <div className="ingredients col s12">{recipeSteps}</div>
                     </div>
                     <div className="row">
@@ -240,8 +249,8 @@ class RecipeForm extends Component {
                         </p>
                         <div className="form__checkboxes col s12">{checkbox}</div>
                     </div>
-                    <button type={"submit"} className={"form__submit btn waves-effect waves-light col s12"} onClick={this.handleSubmit}>
-                        <i className="material-icons">Submit</i>
+                    <button type={"submit"} className={"recipe-btn btn waves-effect waves-light col s12"} onClick={this.handleSubmit}>
+                        Submit
                     </button>
                 </form>
         </div>

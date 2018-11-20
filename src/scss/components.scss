@@ -1,0 +1,13 @@
+.recipe-btn{
+    background: $second-color;
+    border: none;
+    color: white;
+    margin-right: 10px;
+    &:hover {
+        background: darken($second-color, 10%);
+    }
+    &__nomg{
+        margin: 0;
+        height: 100%;
+    }
+}

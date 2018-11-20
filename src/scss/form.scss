@@ -10,19 +10,20 @@
 }
 
 .recipe-form{
-  background: rgba(white, 0.7);
+  background: mix($main-color, $second-color);
 }
 
 .recipe-form-label{
   position: absolute;
   top: -0.7rem;
+  color: white;
 }
 
 
 .form__description {
   margin: 0;
   font-size: 1.2em;
-  color: $main-color;
+  color: white;
 }
 
 .form-button{
@@ -63,4 +64,34 @@
 
 .form__checkbox-container {
   margin: 0.3em 0;
+}
+
+.form-checkbox-label{
+  color: white;
+}
+
+.form-ingredients__list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.form-ingredients__list-button{
+  background: lighten(red, 20%);
+  border: none;
+  margin: 10px 0 10px 20px;
+  padding: 0 15px !important;
+
+  &--edit{
+    background: lighten(yellow, 10%);
+    color: black;
+    &:hover{
+      background: yellow !important;
+    }
+  }
+  &:hover{
+    background: lighten(red, 10%);
+  }
 }

@@ -14,6 +14,7 @@ $xlarge: "screen and (min-width: 1200px)";
 @import './materialize/materialize.scss';
 
 //PARTIALS:
+@import 'components.scss';
 @import 'menu.scss';
 @import 'header.scss';
 @import 'loader.scss';
@@ -31,8 +32,8 @@ $xlarge: "screen and (min-width: 1200px)";
 }
 
 body{
-  background: url("../../images/background.jpg");
-  background-color: $additional-color;
+  // background: url("../../images/background.jpg");
+  background-color: mix($main-color, $second-color);
   background-attachment: fixed;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
