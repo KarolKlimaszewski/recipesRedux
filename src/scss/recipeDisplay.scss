@@ -31,14 +31,18 @@
   min-height: 50px;
   color: white;
   font-weight: 700;
+  text-align: right;
 }
 
-.recipe__photo{
-  flex-basis: 50%;
+.recipe__img-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .recipe__img{
-  width: 100%;
+  max-width: 80%;
 }
 
 .recipe__ingredients-title{
