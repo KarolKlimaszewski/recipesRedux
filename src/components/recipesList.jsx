@@ -81,29 +81,31 @@ class RecipesList extends Component {
               className="recipe-mini__category recipe-mini__category--drink"></div>
           }
         })
-      return <div className={"recipe-mini-container col s12 m6 l4 xl3"} key={"recipe_" + i}>
-        <div className="recipe-mini-header">
-          <NavLink
-            to={"/recipes/:" + el.id}
-            className={"filter-btn waves-effect waves-light btn"}
-            onClick={e => this.handleShowRecipe(e, el)}>
-            show
-          </NavLink>
-          <div className="recipe-mini__category-container">{categories}</div>
-        </div>
-        <h6 className="recipe-mini__title">{el.title}</h6>
-        <div className="recipe-mini__img-container">
-          <img
-            src={el.photo}
-            alt={el.title}
-            className="recipe-mini__img"
-            onError={this.onImgError}/>
-        </div>
+      return <div className={"recipe-mini-container"} key={"recipe_" + i}>
+        <NavLink
+          to={"/recipes/:" + el.id}
+          className="recipe-mini__link"
+          onClick={e => this.handleShowRecipe(e, el)}>
+          <div className="recipe-mini__img-container">
+            <img
+              src={el.photo}
+              alt={el.title}
+              className="recipe-mini__img"
+              onError={this.onImgError}/>
+          </div>
+          <div className="recipe-mini-header">
+            <h6 className="recipe-mini__title">{el.title}</h6>
+            <div className="recipe-mini__category-container">{categories}</div>
+          </div>
+        </NavLink>
+        <p className="recipe-mini__description">
+          {el.preview}
+        </p>
       </div>
     });
     if (this.props.data !== 'loading') {
       return <div>
-        <div className="row">
+        <div className="row recipe-list-container">
           {recipes}
         </div>
         <Footer/>

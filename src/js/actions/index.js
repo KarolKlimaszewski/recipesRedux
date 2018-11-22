@@ -1,4 +1,8 @@
-import {recipesRef, authRef, provider} from "../config/firebase";
+import {
+    recipesRef,
+    authRef,
+    provider
+} from "../config/firebase";
 import {
     FETCH_USER,
     SUBMIT_FORM,
@@ -16,44 +20,44 @@ import {
 
 export const signIn = () => dispatch => {
     console.log(provider)
-  authRef
-    .signInWithPopup(provider)
-    .then(result => {
-        dispatch({
-            type: SIGN_IN,
-            payload: true
-        })        
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    authRef
+        .signInWithPopup(provider)
+        .then(result => {
+            dispatch({
+                type: SIGN_IN,
+                payload: true
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
 };
 
 export const signOut = () => dispatch => {
-  authRef
-    .signOut()
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    authRef
+        .signOut()
+        .then(() => {
+            // Sign-out successful.
+        })
+        .catch(error => {
+            console.log(error);
+        });
 };
 
 export const fetchUser = () => dispatch => {
-  authRef.onAuthStateChanged(user => {
-    if (user) {
-      dispatch({
-        type: FETCH_USER,
-        payload: user
-      });
-    } else {
-      dispatch({
-        type: FETCH_USER,
-        payload: null
-      });
-    }
-  });
+    authRef.onAuthStateChanged(user => {
+        if (user) {
+            dispatch({
+                type: FETCH_USER,
+                payload: user
+            });
+        } else {
+            dispatch({
+                type: FETCH_USER,
+                payload: null
+            });
+        }
+    });
 };
 
 // RECIPES FORM ACTIONS

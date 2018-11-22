@@ -27,21 +27,12 @@ class RecipeForm extends Component {
       ingredientsTitle: "",
       ingredientsAmount: "",
       ingredientsUnit: "",
-      ingredientsArr: [
-        {
-          amount: 200,
-          title: "milk",
-          unit: "ml"
-        }, {
-          amount: 200,
-          title: "ingredientwithatleast20digits",
-          unit: "ml"
-        }
-      ],
+      ingredientsArr: [],
       photo: "",
       recipeSteps: "",
-      recipeStepsArr: [],
-      category: []
+      recipeStepsArr: ["test", "siema"],
+      category: [],
+      preview: ""
     }
     this.handleFormDisplay = this
       .handleFormDisplay
@@ -79,8 +70,14 @@ class RecipeForm extends Component {
     this.handleDeleteRecipeStep = this
       .handleDeleteRecipeStep
       .bind(this);
+    this.handleEditRecipeStep = this
+      .handleEditRecipeStep
+      .bind(this);
     this.handleSubmit = this
       .handleSubmit
+      .bind(this);
+    this.handlePreviewChange = this
+      .handlePreviewChange
       .bind(this);
   }
 
@@ -116,7 +113,10 @@ class RecipeForm extends Component {
   }
 
   handleIngredientsAmountChange(event) {
-    this.setState({ingredientsAmount: event.target.value})
+    const reg = /^[0-9]*$/
+    if(event.target.value.match(reg)) {
+      this.setState({ingredientsAmount: event.target.value})
+    }
   }
 
   handleIngredientsUnitChange(event) {
@@ -172,6 +172,18 @@ class RecipeForm extends Component {
     this.setState({recipeStepsArr: recArr})
   }
 
+  handleEditRecipeStep(event, el) {
+      event.preventDefault();
+      const recArr = this.state.recipeStepsArr;
+      let index = recArr.indexOf(el);
+      recArr.splice(index, index + 1);
+      console.log(index);
+      this.setState({
+        recipeStepsArr: recArr,
+        recipeSteps: el
+      })
+  }
+
   handlePhotoUrlChange(event) {
     this.setState({photo: event.target.value})
   }
@@ -180,9 +192,15 @@ class RecipeForm extends Component {
     this.setState({recipeSteps: event.target.value})
   }
 
+  handlePreviewChange(event) {
+    if(event.target.value.length < 160) {
+      this.setState({preview: event.target.value})
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    const {title, ingredientsArr, photo, recipeStepsArr, category} = this.state;
+    const {title, ingredientsArr, photo, recipeStepsArr, category, preview} = this.state;
     const id = uuidv1();
     if (title === "" || ingredientsArr === [] || photo === "" || recipeStepsArr === [] || category === []) {
       alert('fill all fields.');
@@ -195,7 +213,8 @@ class RecipeForm extends Component {
           photo,
           recipeStepsArr,
           category,
-          id
+          id,
+          preview
         });
       this.setState({
         title: "",
@@ -204,7 +223,8 @@ class RecipeForm extends Component {
         photo: "",
         recipeSteps: "",
         recipeStepsArr: [],
-        category: []
+        category: [],
+        preview: ""
       })
       this
         .props
@@ -212,6 +232,7 @@ class RecipeForm extends Component {
     }
   }
   render() {
+    console.log(this.state.recipeStepsArr)
     let ingredients = this
       .state
       .ingredientsArr
@@ -233,7 +254,8 @@ class RecipeForm extends Component {
             className="recipe-btn form-button waves-effect waves-light btn form-ingredients__list-button"
             onClick={e => this.handleDeleteRecipeStep(e, el)}>X</button>
           <button
-            className="recipe-btn form-button waves-effect waves-light btn form-ingredients__list-button form-ingredients__list-button--edit">edit</button>
+            className="recipe-btn form-button waves-effect waves-light btn form-ingredients__list-button form-ingredients__list-button--edit"
+            onClick={e => this.handleEditRecipeStep(e, el)}>edit</button>
         </div>
       })
     let checkbox = checkboxes.map((el, i) => {
@@ -260,6 +282,12 @@ class RecipeForm extends Component {
           <div className="input-field col s12 m12 l6">
             <p className="recipe-form-label">Photo url:</p>
             <input value={this.state.photo} onChange={this.handlePhotoUrlChange}/>
+          </div>
+          <div className="input-field col s12">
+            <p className="recipe-form-label">Short preview (up to 160 digits):</p>
+            <input
+              value={this.state.preview}
+              onChange={this.handlePreviewChange} />
           </div>
         </div>
         <div className="row">
@@ -290,7 +318,7 @@ class RecipeForm extends Component {
         <div className="row">
           {/* <p className="form__description col s12">Recipe steps:</p> */}
           <div className="input-field col s12 m12 l6 xl7">
-            <p className="recipe-form-label">Recipe step:</p>
+            <p className="recipe-form-label">Recipe steps:</p>
             <input value={this.state.recipeSteps} onChange={this.handleRecipeStepsChange}/>
           </div>
           <button
