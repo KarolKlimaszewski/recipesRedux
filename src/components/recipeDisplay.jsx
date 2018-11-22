@@ -1,19 +1,20 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import _ from "underscore";
-import {deleteRecipe, showRecipe, activeRecipeDisplay} from "../js/actions/index";
+import {deleteRecipe, showRecipe, activeRecipeDisplay, loadRecipe} from "../js/actions/index";
+import Loader from "./loader.jsx";
 
 import {NavLink} from 'react-router-dom';
 
 const mapStateToProps = state => {
-  return {recipes: state.recipes, activeID: state.main.activeID, active: state.main.active};
+  return { recipes: state.recipes, activeID: state.main.activeID, activeRecipe: state.main.activeRecipe};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     // showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
     deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
-    // activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active))
+    loadRecipe: id => dispatch(loadRecipe(id)),
   };
 };
 
@@ -26,6 +27,12 @@ class ShowRecipe extends Component {
       .bind(this);
   }
 
+  componentWillMount() {
+    this
+      .props
+      .loadRecipe(this.props.match.params.id.substr(1));
+  }
+
   handleDeleteRecipe(event, el) {
     this
       .props
@@ -33,29 +40,31 @@ class ShowRecipe extends Component {
   }
 
   render() {
-    let step = this
-      .props
-      .active
-      .recipeStepsArr
-      .map((step, i) => {
-        return <p key={"recipeStep" + i} className="recipe-steps-list__item">{step}</p>
-      })
-    let ing = this
-      .props
-      .active
-      .ingredientsArr
-      .map((ing, i) => {
-        return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing.amount}{ing.unit}
-          of {ing.title}</p>
-      })
+      if(this.props.activeRecipe) {
+        console.log(this.props.activeRecipe)
+        let step = this
+          .props
+          .activeRecipe
+          .recipeStepsArr
+          .map((step, i) => {
+            return <p key={"recipeStep" + i} className="recipe-steps-list__item">{step}</p>
+          })
+        let ing = this
+          .props
+          .activeRecipe
+          .ingredientsArr
+          .map((ing, i) => {
+            return <p key={"ingredient" + i} className={"recipe__ingredients-item"}>{ing.amount}{ing.unit}
+              of {ing.title}</p>
+          })
     return <div className={"recipe-container"}>
       <NavLink
         to={"/recipes"}
         className={"filter-btn waves-effect waves-light btn"}>back</NavLink>
-      <h2 className="recipe__title">{this.props.active.title}</h2>
+      <h2 className="recipe__title">{this.props.activeRecipe.title}</h2>
       <div className="recipe__img-container">
         <img
-          src={this.props.active.photo}
+          src={this.props.activeRecipe.photo}
           alt="See this? Please try to update photo address (url)."
           className="recipe__img"/>
       </div>
@@ -80,6 +89,8 @@ class ShowRecipe extends Component {
           onClick={e => this.handleDeleteRecipe(e, this.props.active)}>delete</NavLink>
       </div>
     </div>
+      }
+      return <Loader />
   }
 }
 

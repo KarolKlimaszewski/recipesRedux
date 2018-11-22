@@ -177,7 +177,6 @@ class RecipeForm extends Component {
       const recArr = this.state.recipeStepsArr;
       let index = recArr.indexOf(el);
       recArr.splice(index, index + 1);
-      console.log(index);
       this.setState({
         recipeStepsArr: recArr,
         recipeSteps: el
@@ -232,7 +231,6 @@ class RecipeForm extends Component {
     }
   }
   render() {
-    console.log(this.state.recipeStepsArr)
     let ingredients = this
       .state
       .ingredientsArr

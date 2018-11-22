@@ -13,7 +13,8 @@ import {
     TOGGLE_FILTERS,
     LAUNCH_FILTERS,
     CLEAR_FILTERS,
-    SIGN_IN
+    SIGN_IN,
+    LOAD_RECIPE
 } from "../constants/action-types";
 
 // LOGIN
@@ -95,6 +96,15 @@ export const activeRecipeDisplay = active => ({
     type: ACTIVE_RECIPE_DISPLAY,
     payload: active
 })
+
+export const loadRecipe = id => async dispatch => {
+    recipesRef.child(id).on("value", snapshot => {
+        dispatch({
+            type: LOAD_RECIPE,
+            payload: snapshot.val()
+        });
+    });
+};
 
 // RECIPES FILTERS ACTIONS
 
