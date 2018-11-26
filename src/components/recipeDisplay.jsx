@@ -7,7 +7,7 @@ import Loader from "./loader.jsx";
 import {NavLink} from 'react-router-dom';
 
 const mapStateToProps = state => {
-  return { recipes: state.recipes, activeID: state.main.activeID, activeRecipe: state.main.activeRecipe};
+  return { recipes: state.recipes, activeRecipe: state.main.activeRecipe};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -41,7 +41,6 @@ class ShowRecipe extends Component {
 
   render() {
       if(this.props.activeRecipe) {
-        console.log(this.props.activeRecipe)
         let step = this
           .props
           .activeRecipe

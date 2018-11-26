@@ -9,7 +9,6 @@ import {
     TOGGLE_FORM,
     FETCH_RECIPES,
     DELETE_RECIPE,
-    ACTIVE_RECIPE_DISPLAY,
     TOGGLE_FILTERS,
     LAUNCH_FILTERS,
     CLEAR_FILTERS,
@@ -20,10 +19,10 @@ import {
 // LOGIN
 
 export const signIn = () => dispatch => {
-    console.log(provider)
     authRef
         .signInWithPopup(provider)
         .then(result => {
+            console.log(result)
             dispatch({
                 type: SIGN_IN,
                 payload: true
@@ -31,6 +30,10 @@ export const signIn = () => dispatch => {
         })
         .catch(error => {
             console.log(error);
+            dispatch({
+                type: SIGN_IN,
+                payload: false
+            })
         });
 };
 
@@ -47,6 +50,7 @@ export const signOut = () => dispatch => {
 
 export const fetchUser = () => dispatch => {
     authRef.onAuthStateChanged(user => {
+        console.log(user);
         if (user) {
             dispatch({
                 type: FETCH_USER,
@@ -92,10 +96,6 @@ export const deleteRecipe = recipe => async dispatch => {
         payload: recipesRef.child(recipe.id).remove()
     })
 };
-export const activeRecipeDisplay = active => ({
-    type: ACTIVE_RECIPE_DISPLAY,
-    payload: active
-})
 
 export const loadRecipe = id => async dispatch => {
     recipesRef.child(id).on("value", snapshot => {

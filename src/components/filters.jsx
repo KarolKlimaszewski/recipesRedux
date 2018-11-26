@@ -83,9 +83,8 @@ export class Filter extends Component {
           recipesFiltered.push(el);
         }
       } else if (this.state.ingredients) {
-        el
-          .ingredientsArr
-          .map(ing => {
+        el.ingredientsArr.map(ing => {
+          console.log(ing)
             if (ing.title.includes(this.state.ingredients.value)) {
               recipesFiltered.push(el);
             }

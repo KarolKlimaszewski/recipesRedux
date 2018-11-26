@@ -30,7 +30,7 @@ class RecipeForm extends Component {
       ingredientsArr: [],
       photo: "",
       recipeSteps: "",
-      recipeStepsArr: ["test", "siema"],
+      recipeStepsArr: [],
       category: [],
       preview: ""
     }

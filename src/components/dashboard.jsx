@@ -1,7 +1,18 @@
-import React from "react";
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
-export default class Dashboard extends React.Component {
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+class Dash extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     if (this.props.auth) {
       return <header className="header">
@@ -19,3 +30,7 @@ export default class Dashboard extends React.Component {
     </header>
   }
 }
+
+const Dashboard = connect(mapStateToProps, null)(Dash);
+export default Dashboard;
+

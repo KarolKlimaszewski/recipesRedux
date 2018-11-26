@@ -15,19 +15,7 @@ export default class Menu extends React.Component {
         <NavLink
           to={"/"}
           className={"menu__link"}
-          activeClassName={"menu__link menu__link--active-main"}>Login</NavLink>
-      </li>
-      <li className={"menu__item"}>
-        <NavLink
-          to={"/dashboard"}
-          className={"menu__link"}
           activeClassName={"menu__link menu__link--active"}>Dashboard</NavLink>
-      </li>
-      <li className={"menu__item"}>
-        <NavLink
-          to={"/filters"}
-          className={"menu__link"}
-          activeClassName={"menu__link menu__link--active"}>Filters</NavLink>
       </li>
       <li className={"menu__item"}>
         <NavLink
