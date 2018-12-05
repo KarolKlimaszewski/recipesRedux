@@ -2,8 +2,8 @@ import {SUBMIT_FORM, TOGGLE_FORM, DELETE_RECIPE, TOGGLE_FILTERS, LAUNCH_FILTERS,
 const initialState = {
   articles: [],
   displayForm: true,
-  displayRecipe: true,
-  displayFilters: true,
+  displayRecipe: false,
+  displayFilters: false,
   filters: [],
   activeRecipe: null
 };

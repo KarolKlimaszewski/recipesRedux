@@ -1,13 +1,18 @@
 import { FETCH_USER, SIGN_IN } from "../constants/action-types";
 
-export default (state = false, action) => {
+const initialState = {
+  userLog: false,
+  userID: null
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    // case FETCH_USER:
-    // console.log(action.payload)
-    //   return action.payload || null;
+
     case SIGN_IN: 
-    console.log(action.payload)
-    return action.payload || null;
+    return Object.assign({}, state, {
+      userLog: action.payload.userLog,
+      userID: action.payload.userID
+    }) || null;
     default:
       return state;
   }

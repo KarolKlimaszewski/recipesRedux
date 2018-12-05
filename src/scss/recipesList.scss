@@ -17,7 +17,7 @@
         background: darken($additional-color, 20%);
     }
     @media #{$mid} {
-        max-height: 400px !important;
+        // max-height: 400px !important;
         min-height: 370px !important;
         &:nth-child(n) {
             background: darken($additional-color, 10%);

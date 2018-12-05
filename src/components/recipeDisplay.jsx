@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import _ from "underscore";
-import {deleteRecipe, showRecipe, activeRecipeDisplay, loadRecipe} from "../js/actions/index";
+import {deleteRecipe, loadRecipe} from "../js/actions/index";
 import Loader from "./loader.jsx";
 
 import {NavLink} from 'react-router-dom';
@@ -12,9 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // showRecipe: displayRecipe => dispatch(showRecipe(displayRecipe)),
     deleteRecipe: recipe => dispatch(deleteRecipe(recipe)),
     loadRecipe: id => dispatch(loadRecipe(id)),
+    // addToFavorite: 
   };
 };
 
@@ -25,18 +25,27 @@ class ShowRecipe extends Component {
     this.handleDeleteRecipe = this
       .handleDeleteRecipe
       .bind(this);
+    this.handleAddToFavorite = this
+      .handleAddToFavorite
+      .bind(this);
   }
 
   componentWillMount() {
     this
       .props
       .loadRecipe(this.props.match.params.id.substr(1));
-  }
-
-  handleDeleteRecipe(event, el) {
-    this
+    }
+    
+    handleDeleteRecipe(event, el) {
+      this
       .props
       .deleteRecipe(el);
+    }
+    
+    handleAddToFavorite(event, el) {
+      const id = this.props.match.params.id.substr(1);
+      console.log(id);
+      this.props.addToFavorite(id);
   }
 
   render() {
@@ -61,6 +70,8 @@ class ShowRecipe extends Component {
         to={"/recipes"}
         className={"filter-btn waves-effect waves-light btn"}>back</NavLink>
       <h2 className="recipe__title">{this.props.activeRecipe.title}</h2>
+        <div className="recipe__content">
+        <div className="recipe__favorite" onClick={this.handleAddToFavorite}></div>
       <div className="recipe__img-container">
         <img
           src={this.props.activeRecipe.photo}
@@ -73,6 +84,7 @@ class ShowRecipe extends Component {
           {ing}
         </div>
       </div>
+        </div>
       <div className="recipe__row">
         <div className={"recipe-steps-list"}>
           {step}

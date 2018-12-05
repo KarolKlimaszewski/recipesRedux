@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "underscore";
-import { deleteRecipe, showRecipe, activeRecipe, activeRecipeDisplay, fetchRecipes } from "../js/actions/index";
-import Filters from "./filters.jsx";
+import { fetchRecipes } from "../js/actions/index";
 import Footer from "./footer.jsx";
 import Loader from "./loader.jsx";
 
@@ -14,7 +13,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        activeRecipeDisplay: active => dispatch(activeRecipeDisplay(active)),
         fetchRecipes: recipes => dispatch(fetchRecipes(recipes))
     };
 };
@@ -23,9 +21,7 @@ class RecipesList extends Component {
     constructor(props) {
         super(props);
 
-        this.handleShowRecipe = this
-            .handleShowRecipe
-            .bind(this);
+        
         this.onImgError = this
             .onImgError
             .bind(this);
@@ -35,13 +31,6 @@ class RecipesList extends Component {
         this
             .props
             .fetchRecipes(this.props.data)
-    }
-
-    handleShowRecipe(e, el) {
-        event.preventDefault();
-        this
-            .props
-            .activeRecipeDisplay(el);
     }
     onImgError(event) {
         event
@@ -84,8 +73,7 @@ class RecipesList extends Component {
             return <div className={"recipe-mini-container"} key={"recipe_" + i}>
                     <NavLink
                         to={"/recipes/:" + el.id}
-                        className="recipe-mini__link"
-                        onClick={e => this.handleShowRecipe(e, el)}>
+                        className="recipe-mini__link">
                         <div className="recipe-mini__img-container">
                             <img
                                 src={el.photo}
@@ -104,11 +92,8 @@ class RecipesList extends Component {
                 </div>
         });
         if (this.props.data !== 'loading') {
-            return <div>
-                <div className="row recipe-list-container">
-                    {recipes}
-                </div>
-                <Footer />
+            return<div className="row recipe-list-container">
+            {recipes}
             </div>
         }
         return <Loader />

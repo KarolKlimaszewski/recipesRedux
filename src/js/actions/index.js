@@ -22,17 +22,23 @@ export const signIn = () => dispatch => {
     authRef
         .signInWithPopup(provider)
         .then(result => {
-            console.log(result)
+            console.log(result.user.uid)
             dispatch({
                 type: SIGN_IN,
-                payload: true
+                payload: {
+                    userLog: true,
+                    userID: result.user.uid
+                }
             })
         })
         .catch(error => {
             console.log(error);
             dispatch({
                 type: SIGN_IN,
-                payload: false
+                payload: {
+                    userLog: false,
+                    userID: null
+                }
             })
         });
 };

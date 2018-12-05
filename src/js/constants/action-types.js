@@ -9,6 +9,7 @@ export const FETCH_RECIPES = "FETCH_RECIPES";
 export const DELETE_RECIPE = "DELETE_RECIPE";
 
 export const LOAD_RECIPE = "LOAD_RECIPE";
+export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
 
 export const TOGGLE_FILTERS = "TOGGLE_FILTERS";
 export const LAUNCH_FILTERS = "LAUNCH_FILTERS";
